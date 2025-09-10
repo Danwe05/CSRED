@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - CSRED</title>
+    <meta name="description" content="Découvrez l'histoire, la mission et l'équipe du CSRED, centre dédié à l'accompagnement des enfants en difficulté à Maroua.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#2563eb',
+                        'primary-blue': '#2563eb',
+                        'light-blue': '#dbeafe',
+                        'light-blue': '#dcfce7',
+                        'dark-blue': '#1e40af',
+                        'dark-blue': '#15803d'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'timeline-draw': 'timelineDraw 2s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Enhanced Custom Styles -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes timelineDraw {
+            from {
+                height: 0;
+            }
+            to {
+                height: 100%;
+            }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; }
+        .floating-shape:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .floating-shape:nth-child(4) { top: 40%; right: 30%; animation-delay: 6s; }
+        
+        .gradient-button {
+            background: linear-gradient(135deg, #2563eb 0%, #164ea3 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-line {
+            position: relative;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, #2563eb, #2563eb);
+            border-radius: 2px;
+            animation: timeline-draw 2s ease-out forwards;
+            transform: translateX(-50%);
+        }
+        
+        .team-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .team-card:hover::before {
+            left: 100%;
+        } 
+/* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu ul {
+            padding: 1rem 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .mobile-menu li {
+            margin: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .mobile-menu a:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+            padding-left: 2rem;
+        }
+        
+        .mobile-menu a.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-lang-buttons {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #2563eb;
+        }
+</style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="flex items-center gap-2">
+                <img src="img/logo.png" alt="CSRED Logo" class="w-8 h-8">
+                <span class="font-bold text-primary-blue">CSRED</span>
+            </div>
+            <button id="closeMobileMenu" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul>
+            <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+            <li><a href="a-propos.html" class="active" data-fr="À propos" data-en="About">À propos</a></li>
+            <li><a href="actions.html" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+            <li><a href="soutenir.html" data-fr="Soutenir" data-en="Support">Soutenir</a></li>
+            <li><a href="galerie.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+            <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+        </ul>
+        
+        <div class="mobile-lang-buttons">
+            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2" onclick="switchLanguage('fr')">FR</button>
+            <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
+                    <img src="img/logo.png" alt="CSRED Logo" style="width: 60px; height: 60px;">
+                    <span>CSRED</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="index.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Accueil</a></li>
+                    <li><a href="a-propos.html" class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">À propos</a></li>
+                    <li><a href="actions.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Nos actions</a></li>
+                    <li><a href="soutenir.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Soutenir</a></li>
+                    <li><a href="galerie.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Galerie</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a></li>
+                </ul>
+
+                <!-- Desktop Language Buttons -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium" onclick="switchLanguage('fr')">FR</button>
+                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuToggle" class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="bg-gray-50 py-4 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center gap-2 text-gray-600">
+                <a href="index.html" class="text-primary-blue hover:text-dark-blue transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a>
+                <i class="fas fa-chevron-right text-sm"></i>
+                <span class="text-gray-800 font-medium" data-fr="À propos" data-en="About">À propos</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Enhanced Page Header -->
+    <section class="bg-gradient-to-br from-primary-blue via-blue-600 to-primary-blue text-white py-24 relative overflow-hidden">
+        <!-- Floating Background Shapes -->
+        <div class="floating-shapes">
+            <div class="floating-shape w-40 h-40 bg-white rounded-full"></div>
+            <div class="floating-shape w-32 h-32 bg-primary-blue rounded-full"></div>
+            <div class="floating-shape w-24 h-24 bg-blue-300 rounded-full"></div>
+            <div class="floating-shape w-48 h-48 bg-blue-300 rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 text-center relative">
+            <!-- Glass Effect Header Card -->
+            <div class="glass-effect rounded-3xl p-12 mb-8 animate-scale-in">
+                <div class="inline-block p-4 bg-white/20 rounded-3xl mb-8">
+                    <i class="fas fa-users text-5xl text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-3xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-blue-100 bg-clip-text text-transparent animate-fade-in-up" data-fr="À propos du CSRED" data-en="About CSRED">À propos du CSRED</h1>
+                <div class="w-32 h-2 bg-gradient-to-r from-white to-blue-400 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
+                <p class="text-3xl md:text-2xl max-w-5xl mx-auto leading-relaxed font-light opacity-95 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Découvrez notre histoire, notre mission et notre équipe dédiée à l'accompagnement des enfants en difficulté." data-en="Discover our history, our mission and our team dedicated to supporting children in difficulty.">
+                    Découvrez notre histoire, notre mission et notre équipe dédiée à l'accompagnement des enfants en difficulté.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Enhanced Histoire et Fondation -->
+        <section class="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+                <div class="absolute bottom-20 right-10 w-72 h-72 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 3s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative">
+                <div class="text-center mb-20 animate-fade-in-up">
+                    <div class="inline-block p-4 bg-primary-blue/10 rounded-3xl mb-8">
+                        <i class="fas fa-history text-5xl text-primary-blue"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-3xl font-black text-gray-800 mb-6 " data-fr="Notre histoire" data-en="Our history">Notre histoire</h2>
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <div class="w-20 h-1 bg-gradient-to-r from-primary-blue to-transparent rounded"></div>
+                        <div class="w-6 h-6 bg-primary-blue rounded-full animate-pulse"></div>
+                        <div class="w-20 h-1 bg-gradient-to-l from-primary-blue to-transparent rounded"></div>
+                    </div>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-fr="Un parcours de dévouement et d'engagement pour les enfants vulnérables" data-en="A journey of dedication and commitment to vulnerable children">
+                        Un parcours de dévouement et d'engagement pour les enfants vulnérables
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-primary-blue">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Fondation" data-en="Foundation">Fondation</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Le Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté (CSRED) a été créé en 2017 par un groupe de travailleurs sociaux, d'éducateurs et de bénévoles sensibles à la situation des enfants vulnérables de la région de Maroua." data-en="The Center for Stabilization and Resocialization of Children in Difficulty (CSRED) was created in 2017 by a group of social workers, educators and volunteers sensitive to the situation of vulnerable children in the Maroua region.">
+                            Le Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté (CSRED) a été créé en 2017 par un groupe de travailleurs sociaux, d'éducateurs et de bénévoles sensibles à la situation des enfants vulnérables de la région de Maroua.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-primary-blue">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Contexte" data-en="Context">Contexte</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Face à la crise sécuritaire dans l'Extrême-Nord du Cameroun, de nombreux enfants se sont retrouvés séparés de leurs familles, déscolarisés ou traumatisés. Le CSRED est né de la nécessité urgente d'apporter une réponse adaptée à ces enfants en détresse." data-en="Faced with the security crisis in the Far North of Cameroon, many children found themselves separated from their families, out of school or traumatized. CSRED was born from the urgent need to provide an appropriate response to these children in distress.">
+                            Face à la crise sécuritaire dans l'Extrême-Nord du Cameroun, de nombreux enfants se sont retrouvés séparés de leurs familles, déscolarisés ou traumatisés. Le CSRED est né de la nécessité urgente d'apporter une réponse adaptée à ces enfants en détresse.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Évolution" data-en="Evolution">Évolution</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Depuis sa création, le CSRED n'a cessé de développer ses programmes et d'étendre son impact. Nous sommes passés d'une petite structure accueillant 15 enfants à un centre reconnu accompagnant plus de 150 enfants par an." data-en="Since its creation, CSRED has continued to develop its programs and extend its impact. We have grown from a small structure hosting 15 children to a recognized center supporting more than 150 children per year.">
+                            Depuis sa création, le CSRED n'a cessé de développer ses programmes et d'étendre son impact. Nous sommes passés d'une petite structure accueillant 15 enfants à un centre reconnu accompagnant plus de 150 enfants par an.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission et Valeurs -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4" data-fr="Mission et valeurs" data-en="Mission and values">Mission et valeurs</h2>
+                    <div class="w-20 h-1 bg-primary-blue mx-auto rounded"></div>
+                </div>
+                
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl font-bold text-primary-blue mb-6" data-fr="Notre mission" data-en="Our mission">Notre mission</h3>
+                    <p class="text-xl max-w-4xl mx-auto text-gray-600 leading-relaxed" data-fr="Offrir protection, stabilisation et accompagnement vers la réinsertion sociale aux enfants en situation de vulnérabilité, dans le respect de leurs droits et de leur dignité." data-en="Provide protection, stabilization and support towards social reintegration for children in vulnerable situations, respecting their rights and dignity.">
+                        Offrir protection, stabilisation et accompagnement vers la réinsertion sociale aux enfants en situation de vulnérabilité, dans le respect de leurs droits et de leur dignité.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-light-blue rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-heart text-2xl text-primary-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Humanité" data-en="Humanity">Humanité</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Chaque enfant est unique et mérite respect, dignité et amour. Nous plaçons l'humain au cœur de toutes nos actions." data-en="Each child is unique and deserves respect, dignity and love. We place humanity at the heart of all our actions.">
+                            Chaque enfant est unique et mérite respect, dignité et amour. Nous plaçons l'humain au cœur de toutes nos actions.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-light-blue rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-hands-helping text-2xl text-primary-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Inclusion" data-en="Inclusion">Inclusion</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Nous œuvrons pour l'inclusion de tous les enfants dans la société, sans discrimination liée à leur origine, religion ou situation." data-en="We work for the inclusion of all children in society, without discrimination based on their origin, religion or situation.">
+                            Nous œuvrons pour l'inclusion de tous les enfants dans la société, sans discrimination liée à leur origine, religion ou situation.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-balance-scale text-2xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Intégrité" data-en="Integrity">Intégrité</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Transparence, honnêteté et éthique guident notre travail quotidien et nos relations avec tous nos partenaires." data-en="Transparency, honesty and ethics guide our daily work and our relationships with all our partners.">
+                            Transparence, honnêteté et éthique guident notre travail quotidien et nos relations avec tous nos partenaires.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-light-blue rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-lightbulb text-2xl text-primary-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Innovation" data-en="Innovation">Innovation</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Nous adaptons continuellement nos méthodes et développons des approches créatives pour mieux répondre aux besoins des enfants." data-en="We continuously adapt our methods and develop creative approaches to better meet children's needs.">
+                            Nous adaptons continuellement nos méthodes et développons des approches créatives pour mieux répondre aux besoins des enfants.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-light-blue rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-users text-2xl text-primary-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Collaboration" data-en="Collaboration">Collaboration</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Le travail en équipe et les partenariats sont essentiels pour maximiser notre impact et la qualité de nos interventions." data-en="Teamwork and partnerships are essential to maximize our impact and the quality of our interventions.">
+                            Le travail en équipe et les partenariats sont essentiels pour maximiser notre impact et la qualité de nos interventions.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-seedling text-2xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-fr="Durabilité" data-en="Sustainability">Durabilité</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Nous visons des solutions durables qui permettent aux enfants de construire un avenir solide et autonome." data-en="We aim for sustainable solutions that enable children to build a solid and autonomous future.">
+                            Nous visons des solutions durables qui permettent aux enfants de construire un avenir solide et autonome.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Team Section -->
+        <section class="py-24 bg-white relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-20 right-10 w-96 h-96 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+                <div class="absolute bottom-20 left-10 w-80 h-80 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 4s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative">
+                <div class="text-center mb-20 animate-fade-in-up">
+                    <div class="inline-block p-4 bg-primary-blue/10 rounded-3xl mb-8">
+                        <i class="fas fa-users text-5xl text-primary-blue"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-3xl font-black text-gray-800 mb-6 bg-gradient-to-r from-primary-blue to-primary-blue bg-clip-text text-transparent" data-fr="Notre organigramme" data-en="Our team">Notre organigramme</h2>
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <div class="w-20 h-1 bg-gradient-to-r from-primary-blue to-transparent rounded"></div>
+                        <div class="w-6 h-6 bg-primary-blue rounded-full animate-pulse"></div>
+                        <div class="w-20 h-1 bg-gradient-to-l from-primary-blue to-transparent rounded"></div>
+                    </div> 
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-fr="Des professionnels dévoués unis par une mission commune" data-en="Dedicated professionals united by a common mission">
+                        Des professionnels dévoués unis par une mission commune
+                    </p>
+                </div>
+                
+                 <div class="max-w-7xl mx-auto px-4 relative">
+                    <img src="img/org.jpg" alt="">
+                 </div>
+                <!-- Team Grid -->
+                
+
+                <!-- Enhanced Volunteers Section -->
+                <div class="glass-effect rounded-3xl p-12 text-center animate-fade-in-up">
+                    <div class="inline-block p-4 bg-primary-blue/20 rounded-3xl mb-8">
+                        <i class="fas fa-hands-helping text-5xl text-primary-blue"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-primary-blue mb-8" data-fr="Nos bénévoles" data-en="Our volunteers">Nos bénévoles</h3>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-10" data-fr="Le CSRED fonctionne grâce à l'engagement de plus de 25 bénévoles passionnés : enseignants, animateurs, cuisiniers, gardiens, et bien d'autres profils qui donnent de leur temps pour accompagner nos enfants." data-en="CSRED operates thanks to the commitment of more than 25 passionate volunteers: teachers, facilitators, cooks, guards, and many other profiles who give their time to support our children.">
+                        Le CSRED fonctionne grâce à l'engagement de plus de 25 bénévoles passionnés : enseignants, animateurs, cuisiniers, gardiens, et bien d'autres profils qui donnent de leur temps pour accompagner nos enfants.
+                    </p>
+                    <a href="soutenir.html#benevole" class="gradient-button text-white px-10 py-4 rounded-2xl font-bold text-lg inline-flex items-center gap-3 hover:shadow-2xl transition-all duration-300" data-fr="Rejoindre nos bénévoles" data-en="Join our volunteers">
+                        <i class="fas fa-hands-helping text-xl"></i> Rejoindre nos bénévoles
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nos réalisations -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Nos réalisations" data-en="Our achievements">Nos réalisations</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-primary-blue mb-2">150+</div>
+                        <div class="text-gray-600 text-sm" data-fr="Enfants accompagnés depuis 2017" data-en="Children supported since 2017">Enfants accompagnés depuis 2017</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-primary-blue mb-2">95%</div>
+                        <div class="text-gray-600 text-sm" data-fr="Taux de réinsertion réussie" data-en="Successful reintegration rate">Taux de réinsertion réussie</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">80</div>
+                        <div class="text-gray-600 text-sm" data-fr="Enfants formés professionnellement" data-en="Children professionally trained">Enfants formés professionnellement</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">12</div>
+                        <div class="text-gray-600 text-sm" data-fr="Partenaires institutionnels" data-en="Institutional partners">Partenaires institutionnels</div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="2017-2019 : Phase de démarrage" data-en="2017-2019: Startup phase">2017-2019 : Phase de démarrage</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Création du centre, premiers partenariats avec les autorités locales, accueil des 50 premiers enfants et mise en place des programmes de base." data-en="Creation of the center, first partnerships with local authorities, welcoming the first 50 children and setting up basic programs.">
+                            Création du centre, premiers partenariats avec les autorités locales, accueil des 50 premiers enfants et mise en place des programmes de base.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="2020-2022 : Expansion des services" data-en="2020-2022: Service expansion">2020-2022 : Expansion des services</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Développement des ateliers de formation professionnelle, renforcement de l'équipe médicale et lancement du programme de réinsertion familiale." data-en="Development of professional training workshops, strengthening of the medical team and launch of the family reintegration program.">
+                            Développement des ateliers de formation professionnelle, renforcement de l'équipe médicale et lancement du programme de réinsertion familiale.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-blue-600" data-fr="2023-2025 : Consolidation et innovation" data-en="2023-2025: Consolidation and innovation">2023-2025 : Consolidation et innovation</h3>
+                        <p class="text-gray-600 leading-relaxed" data-fr="Amélioration de la qualité des services, développement de programmes innovants et renforcement des partenariats internationaux." data-en="Improving service quality, developing innovative programs and strengthening international partnerships.">
+                            Amélioration de la qualité des services, développement de programmes innovants et renforcement des partenariats internationaux.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reconnaissance et Partenaires -->
+        <section class="py-20">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Reconnaissance et partenaires" data-en="Recognition and partners">Reconnaissance et partenaires</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-primary-blue" data-fr="Reconnaissance officielle" data-en="Official recognition">Reconnaissance officielle</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3"><i class="fas fa-check text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Agrément du Ministère des Affaires Sociales" data-en="Approval from the Ministry of Social Affairs">Agrément du Ministère des Affaires Sociales</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Partenariat avec l'UNICEF Cameroun" data-en="Partnership with UNICEF Cameroon">Partenariat avec l'UNICEF Cameroun</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Collaboration avec Plan International" data-en="Collaboration with Plan International">Collaboration avec Plan International</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Soutien de la Coopération Française" data-en="Support from French Cooperation">Soutien de la Coopération Française</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-primary-blue" data-fr="Partenaires techniques" data-en="Technical partners">Partenaires techniques</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3"><i class="fas fa-handshake text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Hôpital Régional de Maroua" data-en="Maroua Regional Hospital">Hôpital Régional de Maroua</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-handshake text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Délégation Régionale de l'Éducation" data-en="Regional Education Delegation">Délégation Régionale de l'Éducation</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-handshake text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="Centre de Formation Professionnelle" data-en="Professional Training Center">Centre de Formation Professionnelle</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-handshake text-primary-blue mt-1"></i> <span class="text-gray-700" data-fr="ONG locales partenaires" data-en="Partner local NGOs">ONG locales partenaires</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 bg-blue-50">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-primary-blue" data-fr="Rejoignez notre mission" data-en="Join our mission">Rejoignez notre mission</h2>
+                <p class="text-xl mb-12 text-gray-700 leading-relaxed max-w-2xl mx-auto" data-fr="Ensemble, nous pouvons offrir un avenir meilleur à chaque enfant en difficulté. Votre soutien peut changer une vie." data-en="Together, we can offer a better future to every child in difficulty. Your support can change a life.">
+                    Ensemble, nous pouvons offrir un avenir meilleur à chaque enfant en difficulté. Votre soutien peut changer une vie.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="soutenir.html" class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3" data-fr="Nous soutenir" data-en="Support us">
+                        <i class="fas fa-heart"></i> Nous soutenir
+                    </a>
+                    <a href="contact.html" class="border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-3" data-fr="Nous contacter" data-en="Contact us">
+                        <i class="fas fa-envelope"></i> Nous contacter
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary-blue">CSRED</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua" data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos" data-en="About">À propos</a></li>
+                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Contact" data-en="Contact">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
+                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-primary-blue"></i>
+                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-primary-blue"></i>
+                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Newsletter" data-en="Newsletter">Newsletter</h3>
+                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions" data-en="Stay informed about our actions">Restez informé de nos actions</p>
+                    <form class="space-y-3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="email" name="email" placeholder="Votre email" requigreen class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
+                        <button type="submit" class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Enhanced Interactive JavaScript -->
+   <script>
+        // Enhanced JavaScript for Gallery Page
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Enhanced Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in-left, .animate-slide-in-right');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Mobile Menu Functionality
+        let currentLanguage = 'fr';
+        let isMobileMenuOpen = false;
+
+        // Get DOM elements
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+
+        // Toggle mobile menu function
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        // Open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+            
+            isMobileMenuOpen = true;
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            isMobileMenuOpen = false;
+        }
+
+        // Event Listeners
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when clicking menu links
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu on window resize if open (for responsive behavior)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from staying open on orientation change
+        window.addEventListener('orientationchange', () => {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-shape');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Enhanced hover effects for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Enhanced filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button with enhanced styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-primary-blue', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+                    });
+                    
+                    this.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    this.classList.add('bg-primary-blue', 'text-white');
+                    
+                    // Enhanced filter animation
+                    galleryItems.forEach((item, index) => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            item.style.animation = `scaleIn 0.5s ease-out ${index * 0.1}s both`;
+                        } else {
+                            item.style.animation = 'scaleOut 0.3s ease-out both';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Enhanced Modal functionality
+        function openModal(imageId) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('caption');
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add loading state
+            modalImg.style.opacity = '0';
+            modalImg.onload = function() {
+                this.style.opacity = '1';
+            };
+            
+            // In a real implementation, you would set the actual image source here
+            modalImg.src = 'https://via.placeholder.com/800x600/2563eb/ffffff?text=CSRED+Gallery+Image';
+            caption.innerHTML = `<h3 class="text-xl font-bold text-white mb-2">${imageId.toUpperCase()}</h3><p class="text-gray-300">Description de l'image - En production, ceci afficherait la vraie description de l'image.</p>`;
+        }
+
+        // Enhanced close modal functionality
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal events
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('imageModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Add scale out animation for filtering
+        const scaleOutStyle = document.createElement('style');
+        scaleOutStyle.textContent = `
+            @keyframes scaleOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(scaleOutStyle);
+    </script>
+</body>
+</html>

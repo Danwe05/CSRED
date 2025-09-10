@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soutenir le CSRED - Faites la différence</title>
+    <meta name="description" content="Soutenez le CSRED par un don, en devenant bénévole ou partenaire. Ensemble, changeons la vie des enfants en difficulté.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#2563eb',
+                        'dark-blue': '#1d4ed8',
+                        'primary-blue': '#2563eb',
+                        'dark-blue': '#15803d'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Enhanced Custom Styles -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0,-30px,0); }
+            70% { transform: translate3d(0,-15px,0); }
+            90% { transform: translate3d(0,-4px,0); }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { top: 65%; right: 15%; animation-delay: 2s; }
+        .floating-shape:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 4s; }
+        .floating-shape:nth-child(4) { top: 35%; right: 25%; animation-delay: 6s; }
+        
+        .gradient-button {
+            background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .donation-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .donation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .donation-card:hover::before {
+            left: 100%;
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-scale-in { animation: scaleIn 0.5s ease-out; }
+        .animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .animate-pulse-slow { animation: pulse 3s infinite; }
+        .animate-bounce-slow { animation: bounce 2s infinite; }
+        
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-btn.active {
+            color: #2563eb !important;
+            border-bottom-color: #2563eb !important;
+        }
+        .tab-btn:hover {
+            color: #2563eb !important;
+        } 
+/* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu ul {
+            padding: 1rem 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .mobile-menu li {
+            margin: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .mobile-menu a:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+            padding-left: 2rem;
+        }
+        
+        .mobile-menu a.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-lang-buttons {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #2563eb;
+        }
+</style>
+</head>
+<body class="bg-white">
+   <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="flex items-center gap-2">
+                <img src="img/logo.png" alt="CSRED Logo" class="w-8 h-8">
+                <span class="font-bold text-primary-blue">CSRED</span>
+            </div>
+            <button id="closeMobileMenu" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul>
+            <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+            <li><a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a></li>
+            <li><a href="actions.html" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+            <li><a href="soutenir.html" class="active" data-fr="Soutenir" data-en="Support">Soutenir</a></li>
+            <li><a href="galerie.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+            <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+        </ul>
+        
+        <div class="mobile-lang-buttons">
+            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2" onclick="switchLanguage('fr')">FR</button>
+            <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
+                    <img src="img/logo.png" alt="CSRED Logo" style="width: 60px; height: 60px;">
+                    <span>CSRED</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="index.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Accueil</a></li>
+                    <li><a href="a-propos.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">À propos</a></li>
+                    <li><a href="actions.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Nos actions</a></li>
+                    <li><a href="soutenir.html" class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">Soutenir</a></li>
+                    <li><a href="galerie.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Galerie</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a></li>
+                </ul>
+
+                <!-- Desktop Language Buttons -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium" onclick="switchLanguage('fr')">FR</button>
+                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuToggle" class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="bg-gray-50 py-4">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center gap-3 text-sm">
+                <a href="index.html" class="text-primary-blue hover:text-dark-blue transition-colors duration-300 font-medium" data-fr="Accueil" data-en="Home">Accueil</a>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+                <span class="text-gray-600 font-medium" data-fr="Soutenir le CSRED" data-en="Support CSRED">Soutenir le CSRED</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Enhanced Hero Section -->
+    <section class="bg-gradient-to-br from-primary-blue via-blue-600 to-primary-blue text-white py-24 relative overflow-hidden">
+        <!-- Floating Background Shapes -->
+        <div class="floating-shapes">
+            <div class="floating-shape w-48 h-48 bg-white rounded-full"></div>
+            <div class="floating-shape w-32 h-32 bg-primary-blue rounded-full"></div>
+            <div class="floating-shape w-24 h-24 bg-blue-300 rounded-full"></div>
+            <div class="floating-shape w-56 h-56 bg-blue-300 rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            <!-- Glass Effect Header Card -->
+            <div class="glass-effect rounded-3xl p-12 mb-8 animate-scale-in">
+                <div class="inline-block p-4 bg-white/20 rounded-3xl mb-8">
+                    <i class="fas fa-heart text-5xl text-green-400 animate-pulse-slow"></i>
+                </div>
+                <h1 class="text-3xl md:text-3xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-blue-100 bg-clip-text text-transparent animate-fade-in-up" data-fr="Soutenez notre mission" data-en="Support our mission">Soutenez notre mission</h1>
+                <div class="w-32 h-2 bg-gradient-to-r from-white to-blue-400 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
+                <p class="text-3xl md:text-2xl max-w-5xl mx-auto leading-relaxed font-light opacity-95 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Votre soutien peut transformer la vie d'un enfant. Découvrez les différentes façons de nous aider dans notre mission humanitaire." data-en="Your support can transform a child's life. Discover the different ways to help us in our humanitarian mission.">
+                    Votre soutien peut transformer la vie d'un enfant. Découvrez les différentes façons de nous aider dans notre mission humanitaire.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Onglets de navigation -->
+        <section class="py-16">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-center mb-12 border-b-2 border-gray-200">
+                    <button class="tab-btn active px-8 py-4 border-none bg-transparent text-gray-600 font-semibold cursor-pointer border-b-3 border-transparent transition-all duration-300 hover:text-primary-blue" onclick="switchTab('donation')">
+                        <i class="fas fa-heart mr-2"></i> <span data-fr="Faire un don" data-en="Donate">Faire un don</span>
+                    </button>
+                    <button class="tab-btn px-8 py-4 border-none bg-transparent text-gray-600 font-semibold cursor-pointer border-b-3 border-transparent transition-all duration-300 hover:text-primary-blue" onclick="switchTab('volunteer')">
+                        <i class="fas fa-hands-helping mr-2"></i> <span data-fr="Bénévolat" data-en="Volunteer">Bénévolat</span>
+                    </button>
+                    <button class="tab-btn px-8 py-4 border-none bg-transparent text-gray-600 font-semibold cursor-pointer border-b-3 border-transparent transition-all duration-300 hover:text-primary-blue" onclick="switchTab('partnership')">
+                        <i class="fas fa-handshake mr-2"></i> <span data-fr="Partenariat" data-en="Partnership">Partenariat</span>
+                    </button>
+                </div>
+
+                <!-- Section Donation -->
+                <div id="donation" class="tab-content active">
+                    <h2 class="text-4xl font-bold text-center mb-12 text-gray-800" data-fr="Faire un don" data-en="Make a donation">Faire un don</h2>
+                    
+                    <div class="text-center mb-12">
+                        <p class="text-xl max-w-4xl mx-auto text-gray-600 leading-relaxed" data-fr="Chaque don, petit ou grand, contribue directement à améliorer la vie des enfants que nous accompagnons. Votre générosité nous permet de leur offrir protection, éducation et espoir." data-en="Every donation, large or small, directly contributes to improving the lives of the children we support. Your generosity allows us to offer them protection, education and hope.">
+                            Chaque don, petit ou grand, contribue directement à améliorer la vie des enfants que nous accompagnons. Votre générosité nous permet de leur offrir protection, éducation et espoir.
+                        </p>
+                    </div>
+
+                    <!-- Enhanced Donation Options -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                        <!-- 25€ Donation Card -->
+                        <div class="donation-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-book text-white text-2xl"></i>
+                            </div>
+                            <div class="text-4xl font-black text-primary-blue mb-4 group-hover:text-blue-600 transition-colors duration-300">25.000 XAF</div>
+                            <div class="text-gray-600 mb-8 leading-relaxed text-lg" data-fr="Fourniture scolaire complète pour un enfant pendant un mois" data-en="Complete school supplies for one child for one month">
+                                Fourniture scolaire complète pour un enfant pendant un mois
+                            </div>
+                            <button class="gradient-button w-full text-white px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl" onclick="selectDonation(25)">
+                                <span data-fr="Choisir" data-en="Select">Choisir</span>
+                            </button>
+                            <div class="mt-6 h-1 bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+
+                        <!-- 50€ Donation Card -->
+                        <div class="donation-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in" style="animation-delay: 0.1s;">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-utensils text-white text-2xl"></i>
+                            </div>
+                            <div class="text-4xl font-black text-green-500 mb-4 group-hover:text-green-500 transition-colors duration-300">50.000 XAF</div>
+                            <div class="text-gray-600 mb-8 leading-relaxed text-lg" data-fr="Alimentation équilibrée pour un enfant pendant une semaine" data-en="Balanced nutrition for one child for one week">
+                                Alimentation équilibrée pour un enfant pendant une semaine
+                            </div>
+                            <button class="gradient-button w-full text-white px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl" onclick="selectDonation(50)">
+                                <span data-fr="Choisir" data-en="Select">Choisir</span>
+                            </button>
+                            <div class="mt-6 h-1 bg-gradient-to-r from-green-500 to-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+
+                        <!-- 100€ Popular Donation Card -->
+                        <div class="donation-card card-hover bg-white rounded-3xl p-8 shadow-xl border-2 border-primary-blue text-center group animate-scale-in relative" style="animation-delay: 0.2s;">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary-blue to-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce-slow">
+                                <i class="fas fa-star mr-1"></i>Populaire
+                            </div>
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 mt-4">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <div class="text-4xl font-black text-primary-blue mb-4 group-hover:text-blue-600 transition-colors duration-300">100.000 XAF</div>
+                            <div class="text-gray-600 mb-8 leading-relaxed text-lg" data-fr="Séance de suivi psychologique spécialisé pour un enfant traumatisé" data-en="Specialized psychological support session for a traumatized child">
+                                Séance de suivi psychologique spécialisé pour un enfant traumatisé
+                            </div>
+                            <button class="gradient-button w-full text-white px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl" onclick="selectDonation(100)">
+                                <span data-fr="Choisir" data-en="Select">Choisir</span>
+                            </button>
+                            <div class="mt-6 h-1 bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+
+                        <!-- 200€ Donation Card -->
+                        <div class="donation-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in" style="animation-delay: 0.3s;">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-tools text-white text-2xl"></i>
+                            </div>
+                            <div class="text-4xl font-black text-purple-500 mb-4 group-hover:text-pink-500 transition-colors duration-300">200.000 XAF</div>
+                            <div class="text-gray-600 mb-8 leading-relaxed text-lg" data-fr="Formation professionnelle complète (menuiserie, couture, etc.)" data-en="Complete professional training (carpentry, sewing, etc.)">
+                                Formation professionnelle complète (menuiserie, couture, etc.)
+                            </div>
+                            <button class="gradient-button w-full text-white px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl" onclick="selectDonation(200)">
+                                <span data-fr="Choisir" data-en="Select">Choisir</span>
+                            </button>
+                            <div class="mt-6 h-1 bg-gradient-to-r from-purple-500 to-pink-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+                    </div>
+
+                    <!-- Montant personnalisé -->
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800" data-fr="Ou choisissez votre montant" data-en="Or choose your amount">Ou choisissez votre montant</h3>
+                        <div class="flex justify-center gap-4 items-center flex-wrap">
+                            <input type="number" id="customAmount" placeholder="Montant en €" min="5" class="px-4 py-3 border border-gray-300 rounded-lg w-48 focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                            <button class="bg-primary-blue hover:bg-dark-blue text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-2" onclick="selectCustomDonation()">
+                                <i class="fas fa-heart"></i>
+                                <span data-fr="Donner ce montant" data-en="Donate this amount">Donner ce montant</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Méthodes de paiement -->
+                    <div class="bg-gray-50 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-center mb-8 text-gray-800" data-fr="Méthodes de paiement" data-en="Payment methods">Méthodes de paiement</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-mobile-alt text-4xl text-primary-blue"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-center" data-fr="Mobile Money" data-en="Mobile Money">Mobile Money</h4>
+                                <p class="text-gray-600 text-center mb-3" data-fr="green Money, MTN Mobile Money" data-en="green Money, MTN Mobile Money">green Money, MTN Mobile Money</p>
+                                <p class="font-bold text-primary-blue text-center mb-4">+237 6XX XXX XXX</p>
+                                <div class="flex justify-center">
+                                    <div class="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-qrcode text-5xl text-primary-blue"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="text-center mb-4">
+                                    <i class="fab fa-paypal text-4xl text-blue-600"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-center">PayPal</h4>
+                                <p class="text-gray-600 text-center mb-6" data-fr="Paiement sécurisé international" data-en="Secure international payment">Paiement sécurisé international</p>
+                                <div class="text-center">
+                                    <a href="https://paypal.me/CSREDmaroua" class="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300" target="_blank">
+                                        <i class="fab fa-paypal"></i>
+                                        <span data-fr="Donner via PayPal" data-en="Donate via PayPal">Donner via PayPal</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-university text-4xl text-primary-blue"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-center" data-fr="Virement bancaire" data-en="Bank transfer">Virement bancaire</h4>
+                                <p class="text-gray-600 text-center mb-4" data-fr="Pour les dons importants" data-en="For large donations">Pour les dons importants</p>
+                                <div class="text-sm space-y-2">
+                                    <p><strong>IBAN:</strong> CM21 10005 00001 12345678901 23</p>
+                                    <p><strong>BIC:</strong> CCBMCMCX</p>
+                                    <p><strong data-fr="Référence" data-en="Reference">Référence:</strong> DON-CSRED-2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transparence -->
+                    <div id="transparence" class="bg-blue-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold text-center mb-8 text-primary-blue" data-fr="Transparence financière" data-en="Financial transparency">Transparence financière</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-8">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-primary-blue mb-2">85%</div>
+                                <div class="text-gray-600 font-medium" data-fr="Actions directes" data-en="Direct actions">Actions directes</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-primary-blue mb-2">10%</div>
+                                <div class="text-gray-600 font-medium" data-fr="Fonctionnement" data-en="Operations">Fonctionnement</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-primary-blue mb-2">5%</div>
+                                <div class="text-gray-600 font-medium" data-fr="Collecte de fonds" data-en="Fundraising">Collecte de fonds</div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="mb-6 text-gray-700 leading-relaxed" data-fr="Nous nous engageons à utiliser vos dons de manière responsable et transparente. Consultez nos rapports financiers annuels." data-en="We are committed to using your donations responsibly and transparently. View our annual financial reports.">
+                                Nous nous engageons à utiliser vos dons de manière responsable et transparente. Consultez nos rapports financiers annuels.
+                            </p>
+                            <div class="flex gap-4 justify-center flex-wrap">
+                                <a href="#" class="inline-flex items-center gap-2 border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300" data-fr="Rapport 2024" data-en="2024 Report">
+                                    <i class="fas fa-download"></i> Rapport 2024
+                                </a>
+                                <a href="#" class="inline-flex items-center gap-2 border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300" data-fr="Rapport 2023" data-en="2023 Report">
+                                    <i class="fas fa-download"></i> Rapport 2023
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Bénévolat -->
+                <div id="volunteer" class="tab-content">
+                    <h2 class="text-4xl font-bold text-center mb-12 text-gray-800" data-fr="Devenir bénévole" data-en="Become a volunteer">Devenir bénévole</h2>
+                    
+                    <div class="text-center mb-12">
+                        <p class="text-xl max-w-4xl mx-auto text-gray-600 leading-relaxed" data-fr="Rejoignez notre équipe de bénévoles passionnés ! Que vous ayez quelques heures par semaine ou plus de temps à consacrer, votre contribution sera précieuse pour nos enfants." data-en="Join our team of passionate volunteers! Whether you have a few hours a week or more time to dedicate, your contribution will be valuable for our children.">
+                            Rejoignez notre équipe de bénévoles passionnés ! Que vous ayez quelques heures par semaine ou plus de temps à consacrer, votre contribution sera précieuse pour nos enfants.
+                        </p>
+                    </div>
+
+                    <!-- Domaines de bénévolat -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 ">
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-chalkboard-teacher text-5xl text-primary-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Éducation et formation" data-en="Education and training">Éducation et formation</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed" data-fr="Enseignement, soutien scolaire, formation professionnelle, alphabétisation des adultes." data-en="Teaching, tutoring, professional training, adult literacy.">
+                                Enseignement, soutien scolaire, formation professionnelle, alphabétisation des adultes.
+                            </p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Professeurs" data-en="Teachers">Professeurs</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Formateurs techniques" data-en="Technical trainers">Formateurs techniques</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Animateurs pédagogiques" data-en="Educational facilitators">Animateurs pédagogiques</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-user-md text-5xl text-primary-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Santé et bien-être" data-en="Health and wellness">Santé et bien-être</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed" data-fr="Soins médicaux, soutien psychologique, sensibilisation à l'hygiène et à la nutrition." data-en="Medical care, psychological support, hygiene and nutrition awareness.">
+                                Soins médicaux, soutien psychologique, sensibilisation à l'hygiène et à la nutrition.
+                            </p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Médecins" data-en="Doctors">Médecins</span></li>
+
+                            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-palette text-5xl text-green-500"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-center" data-fr="Animation et loisirs" data-en="Animation and leisure">Animation et loisirs</h3>
+                                <p class="text-gray-600 mb-4 leading-relaxed" data-fr="Activités créatives, sport, musique, théâtre, organisation d'événements pour les enfants." data-en="Creative activities, sports, music, theater, organizing events for children.">
+                                    Activités créatives, sport, musique, théâtre, organisation d'événements pour les enfants.
+                                </p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Animateurs" data-en="Facilitators">Animateurs</span></li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Coachs sportifs" data-en="Sports coaches">Coachs sportifs</span></li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Artistes" data-en="Artists">Artistes</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-cogs text-5xl text-primary-blue"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-center" data-fr="Support administratif" data-en="Administrative support">Support administratif</h3>
+                                <p class="text-gray-600 mb-4 leading-relaxed" data-fr="Gestion administrative, communication, comptabilité, logistique et maintenance." data-en="Administrative management, communication, accounting, logistics and maintenance.">
+                                    Gestion administrative, communication, comptabilité, logistique et maintenance.
+                                </p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Secrétaires" data-en="Secretaries">Secrétaires</span></li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Comptables" data-en="Accountants">Comptables</span></li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary-blue"></i> <span data-fr="Techniciens" data-en="Technicians">Techniciens</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Formulaire bénévolat -->
+                        <div class="bg-gray-50 p-8 rounded-xl mt-12">
+                            <h3 class="text-2xl font-bold text-center mb-8 text-gray-800" data-fr="Candidature bénévole" data-en="Volunteer application">Candidature bénévole</h3>
+                            
+                            <form id="volunteerForm" class="max-w-2xl mx-auto space-y-6" action="https://formspree.io/f/YOUR_VOLUNTEER_FORM_ID" method="POST">
+                                <div>
+                                    <label for="volunteer_name" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Nom complet *" data-en="Full name *">Nom complet *</label>
+                                    <input type="text" id="volunteer_name" name="name" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_email" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Email *" data-en="Email *">Email *</label>
+                                    <input type="email" id="volunteer_email" name="email" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_phone" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Téléphone" data-en="Phone">Téléphone</label>
+                                    <input type="tel" id="volunteer_phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_age" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Âge" data-en="Age">Âge</label>
+                                    <input type="number" id="volunteer_age" name="age" min="16" max="80" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_skills" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Compétences et domaines d'intérêt *" data-en="Skills and areas of interest *">Compétences et domaines d'intérêt *</label>
+                                    <select id="volunteer_skills" name="skills" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                        <option value="" data-fr="Choisissez un domaine" data-en="Choose an area">Choisissez un domaine</option>
+                                        <option value="education" data-fr="Éducation et formation" data-en="Education and training">Éducation et formation</option>
+                                        <option value="health" data-fr="Santé et bien-être" data-en="Health and wellness">Santé et bien-être</option>
+                                        <option value="animation" data-fr="Animation et loisirs" data-en="Animation and leisure">Animation et loisirs</option>
+                                        <option value="admin" data-fr="Support administratif" data-en="Administrative support">Support administratif</option>
+                                        <option value="other" data-fr="Autre" data-en="Other">Autre</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_availability" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Disponibilité *" data-en="Availability *">Disponibilité *</label>
+                                    <select id="volunteer_availability" name="availability" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                        <option value="" data-fr="Choisissez votre disponibilité" data-en="Choose your availability">Choisissez votre disponibilité</option>
+                                        <option value="few_hours_week" data-fr="Quelques heures par semaine" data-en="A few hours per week">Quelques heures par semaine</option>
+                                        <option value="one_day_week" data-fr="Une journée par semaine" data-en="One day per week">Une journée par semaine</option>
+                                        <option value="weekend" data-fr="Week-ends" data-en="Weekends">Week-ends</option>
+                                        <option value="full_time" data-fr="Temps plein (stages/missions)" data-en="Full time (internships/missions)">Temps plein (stages/missions)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_experience" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Expérience pertinente" data-en="Relevant experience">Expérience pertinente</label>
+                                    <textarea id="volunteer_experience" name="experience" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300" data-placeholder-fr="Décrivez votre expérience dans le domaine social, éducatif ou avec les enfants..." data-placeholder-en="Describe your experience in social, educational or child-related fields..." placeholder="Décrivez votre expérience dans le domaine social, éducatif ou avec les enfants..."></textarea>
+                                </div>
+
+                                <div>
+                                    <label for="volunteer_motivation" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Motivation *" data-en="Motivation *">Motivation *</label>
+                                    <textarea id="volunteer_motivation" name="motivation" requigreen rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300" data-placeholder-fr="Pourquoi souhaitez-vous rejoindre l'équipe du CSRED ?" data-placeholder-en="Why do you want to join the CSRED team?" placeholder="Pourquoi souhaitez-vous rejoindre l'équipe du CSRED ?"></textarea>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3">
+                                        <i class="fas fa-paper-plane"></i> <span data-fr="Envoyer ma candidature" data-en="Send my application">Envoyer ma candidature</span>
+                                    </button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Section Partenariat -->
+                <div id="partnership" class="tab-content">
+                    <h2 class="text-4xl font-bold text-center mb-12 text-gray-800" data-fr="Devenir partenaire" data-en="Become a partner">Devenir partenaire</h2>
+                    
+                    <div class="text-center mb-12">
+                        <p class="text-xl max-w-4xl mx-auto text-gray-600 leading-relaxed" data-fr="Nous recherchons des partenaires stratégiques pour amplifier notre impact. Organisations, entreprises, institutions : unissons nos forces pour transformer la vie des enfants en difficulté." data-en="We are looking for strategic partners to amplify our impact. Organizations, companies, institutions: let's unite our forces to transform the lives of children in difficulty.">
+                            Nous recherchons des partenaires stratégiques pour amplifier notre impact. Organisations, entreprises, institutions : unissons nos forces pour transformer la vie des enfants en difficulté.
+                        </p>
+                    </div>
+
+                    <!-- Types de partenariats -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-building text-5xl text-primary-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Partenariat institutionnel" data-en="Institutional partnership">Partenariat institutionnel</h3>
+                            <p class="text-gray-600 leading-relaxed" data-fr="Collaboration avec les ministères, collectivités locales, organismes publics pour développer des programmes structurants." data-en="Collaboration with ministries, local authorities, public bodies to develop structural programs.">
+                                Collaboration avec les ministères, collectivités locales, organismes publics pour développer des programmes structurants.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-handshake text-5xl text-primary-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Partenariat ONG/Associations" data-en="NGO/Association partnership">Partenariat ONG/Associations</h3>
+                            <p class="text-gray-600 leading-relaxed" data-fr="Alliance avec d'autres organisations pour mutualiser les ressources et expertises dans la protection de l'enfance." data-en="Alliance with other organizations to pool resources and expertise in child protection.">
+                                Alliance avec d'autres organisations pour mutualiser les ressources et expertises dans la protection de l'enfance.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-industry text-5xl text-green-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Partenariat d'entreprise" data-en="Corporate partnership">Partenariat d'entreprise</h3>
+                            <p class="text-gray-600 leading-relaxed" data-fr="Responsabilité sociale d'entreprise, mécénat, stages, emploi des jeunes formés par le CSRED." data-en="Corporate social responsibility, patronage, internships, employment of young people trained by CSRED.">
+                                Responsabilité sociale d'entreprise, mécénat, stages, emploi des jeunes formés par le CSRED.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-university text-5xl text-primary-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-center" data-fr="Partenariat académique" data-en="Academic partnership">Partenariat académique</h3>
+                            <p class="text-gray-600 leading-relaxed" data-fr="Collaboration avec universités et centres de recherche pour l'innovation en protection de l'enfance." data-en="Collaboration with universities and research centers for innovation in child protection.">
+                                Collaboration avec universités et centres de recherche pour l'innovation en protection de l'enfance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Avantages du partenariat -->
+                    <div class="bg-blue-50 p-8 rounded-xl my-12">
+                        <h3 class="text-2xl font-bold text-center mb-8 text-primary-blue" data-fr="Avantages du partenariat" data-en="Partnership benefits">Avantages du partenariat</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line text-4xl text-primary-blue mb-4"></i>
+                                <h4 class="text-xl font-bold mb-3 text-gray-800" data-fr="Impact amplifié" data-en="Amplified impact">Impact amplifié</h4>
+                                <p class="text-gray-600 leading-relaxed" data-fr="Démultipliez votre impact social en joignant vos efforts aux nôtres" data-en="Multiply your social impact by joining your efforts with ours">Démultipliez votre impact social en joignant vos efforts aux nôtres</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-eye text-4xl text-primary-blue mb-4"></i>
+                                <h4 class="text-xl font-bold mb-3 text-gray-800" data-fr="Visibilité" data-en="Visibility">Visibilité</h4>
+                                <p class="text-gray-600 leading-relaxed" data-fr="Communication sur vos actions solidaires auprès de nos réseaux" data-en="Communication about your solidarity actions to our networks">Communication sur vos actions solidaires auprès de nos réseaux</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-certificate text-4xl text-primary-blue mb-4"></i>
+                                <h4 class="text-xl font-bold mb-3 text-gray-800" data-fr="Reconnaissance" data-en="Recognition">Reconnaissance</h4>
+                                <p class="text-gray-600 leading-relaxed" data-fr="Valorisation de votre engagement RSE et humanitaire" data-en="Enhancement of your CSR and humanitarian commitment">Valorisation de votre engagement RSE et humanitaire</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold text-center mb-8 text-gray-800" data-fr="Demande de partenariat" data-en="Partnership request">Demande de partenariat</h3>
+                        
+                        <form id="partnerForm" class="max-w-2xl mx-auto space-y-6" action="https://formspree.io/f/YOUR_PARTNER_FORM_ID" method="POST">
+                            <div>
+                                <label for="partner_organization" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Nom de l'organisation *" data-en="Organization name *">Nom de l'organisation *</label>
+                                <input type="text" id="partner_organization" name="organization" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                            </div>
+
+                            <div>
+                                <label for="partner_contact" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Personne de contact *" data-en="Contact person *">Personne de contact *</label>
+                                <input type="text" id="partner_contact" name="contact" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                            </div>
+
+                            <div>
+                                <label for="partner_email" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Email *" data-en="Email *">Email *</label>
+                                <input type="email" id="partner_email" name="email" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                            </div>
+
+                            <div>
+                                <label for="partner_phone" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Téléphone" data-en="Phone">Téléphone</label>
+                                <input type="tel" id="partner_phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                            </div>
+
+                            <div>
+                                <label for="partner_type" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Type de partenariat souhaité *" data-en="Desigreen partnership type *">Type de partenariat souhaité *</label>
+                                <select id="partner_type" name="partnership_type" requigreen class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300">
+                                    <option value="" data-fr="Choisissez un type" data-en="Choose a type">Choisissez un type</option>
+                                    <option value="institutional" data-fr="Institutionnel" data-en="Institutional">Institutionnel</option>
+                                    <option value="ngo" data-fr="ONG/Association" data-en="NGO/Association">ONG/Association</option>
+                                    <option value="corporate" data-fr="Entreprise" data-en="Corporate">Entreprise</option>
+                                    <option value="academic" data-fr="Académique" data-en="Academic">Académique</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="partner_description" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Description de votre organisation *" data-en="Organization description *">Description de votre organisation *</label>
+                                <textarea id="partner_description" name="description" requigreen rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300" data-placeholder-fr="Présentez votre organisation, vos activités, vos valeurs..." data-placeholder-en="Present your organization, activities, values..." placeholder="Présentez votre organisation, vos activités, vos valeurs..."></textarea>
+                            </div>
+
+                            <div>
+                                <label for="partner_proposal" class="block text-sm font-medium text-gray-700 mb-2" data-fr="Proposition de collaboration *" data-en="Collaboration proposal *">Proposition de collaboration *</label>
+                                <textarea id="partner_proposal" name="proposal" requigreen rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300" data-placeholder-fr="Décrivez le type de partenariat envisagé, les objectifs communs, les ressources que vous pouvez apporter..." data-placeholder-en="Describe the type of partnership envisioned, common objectives, resources you can bring..." placeholder="Décrivez le type de partenariat envisagé, les objectifs communs, les ressources que vous pouvez apporter..."></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3">
+                                    <i class="fas fa-handshake"></i> <span data-fr="Envoyer la demande" data-en="Send request">Envoyer la demande</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Témoignages -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800" data-fr="Témoignages de nos soutiens" data-en="Testimonials from our supporters">Témoignages de nos soutiens</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="text-gray-600 italic mb-4 text-lg leading-relaxed" data-fr="Soutenir le CSRED, c'est investir dans l'avenir du Cameroun. Ces enfants d'aujourd'hui sont les leaders de demain." data-en="Supporting CSRED means investing in Cameroon's future. These children of today are tomorrow's leaders.">
+                            "Soutenir le CSRED, c'est investir dans l'avenir du Cameroun. Ces enfants d'aujourd'hui sont les leaders de demain."
+                        </div>
+                        <div class="font-semibold text-primary-blue">Dr. Amina HASSAN, Donatrice</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="text-gray-600 italic mb-4 text-lg leading-relaxed" data-fr="Mon expérience de bénévolat au CSRED a changé ma vie. Voir la transformation de ces enfants est extraordinaire." data-en="My volunteer experience at CSRED changed my life. Seeing the transformation of these children is extraordinary.">
+                            "Mon expérience de bénévolat au CSRED a changé ma vie. Voir la transformation de ces enfants est extraordinaire."
+                        </div>
+                        <div class="font-semibold text-primary-blue">Marie DUBOIS, Bénévole depuis 3 ans</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="text-gray-600 italic mb-4 text-lg leading-relaxed" data-fr="Notre partenariat avec le CSRED nous permet de concrétiser nos valeurs d'entreprise citoyenne et responsable." data-en="Our partnership with CSRED allows us to realize our values as a responsible and civic-minded company.">
+                            "Notre partenariat avec le CSRED nous permet de concrétiser nos valeurs d'entreprise citoyenne et responsable."
+                        </div>
+                        <div class="font-semibold text-primary-blue">Paul MARTIN, Directeur RSE - Entreprise CAMTEL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Final -->
+        <section class="py-16 bg-gradient-to-br from-primary-blue to-primary-blue text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-4" data-fr="Chaque geste compte" data-en="Every gesture counts">Chaque geste compte</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed" data-fr="Ensemble, nous pouvons offrir un avenir meilleur à chaque enfant. Votre soutien aujourd'hui peut transformer une vie pour toujours." data-en="Together, we can offer a better future to every child. Your support today can transform a life forever.">
+                    Ensemble, nous pouvons offrir un avenir meilleur à chaque enfant. Votre soutien aujourd'hui peut transformer une vie pour toujours.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 inline-flex items-center gap-3" data-fr="Nous contacter" data-en="Contact us">
+                        <i class="fas fa-envelope"></i> Nous contacter
+                    </a>
+                    <a href="galerie.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition-colors duration-300 inline-flex items-center gap-3" data-fr="Voir nos réalisations" data-en="See our achievements">
+                        <i class="fas fa-images"></i> Voir nos réalisations
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary-blue">CSRED</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua" data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos" data-en="About">À propos</a></li>
+                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Contact" data-en="Contact">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
+                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-primary-blue"></i>
+                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-primary-blue"></i>
+                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Newsletter" data-en="Newsletter">Newsletter</h3>
+                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions" data-en="Stay informed about our actions">Restez informé de nos actions</p>
+                    <form class="space-y-3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="email" name="email" placeholder="Votre email" requigreen class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
+                        <button type="submit" class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Enhanced JavaScript for Gallery Page
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Enhanced Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in-left, .animate-slide-in-right');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Mobile Menu Functionality
+        let currentLanguage = 'fr';
+        let isMobileMenuOpen = false;
+
+        // Get DOM elements
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+
+        // Toggle mobile menu function
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        // Open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+            
+            isMobileMenuOpen = true;
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            isMobileMenuOpen = false;
+        }
+
+        // Event Listeners
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when clicking menu links
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu on window resize if open (for responsive behavior)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from staying open on orientation change
+        window.addEventListener('orientationchange', () => {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-shape');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Enhanced hover effects for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Enhanced filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button with enhanced styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-primary-blue', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+                    });
+                    
+                    this.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    this.classList.add('bg-primary-blue', 'text-white');
+                    
+                    // Enhanced filter animation
+                    galleryItems.forEach((item, index) => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            item.style.animation = `scaleIn 0.5s ease-out ${index * 0.1}s both`;
+                        } else {
+                            item.style.animation = 'scaleOut 0.3s ease-out both';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // Add active class to clicked button
+            const clickedButton = event.target.closest('.tab-btn');
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        // Enhanced Modal functionality
+        function openModal(imageId) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('caption');
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add loading state
+            modalImg.style.opacity = '0';
+            modalImg.onload = function() {
+                this.style.opacity = '1';
+            };
+            
+            // In a real implementation, you would set the actual image source here
+            modalImg.src = 'https://via.placeholder.com/800x600/2563eb/ffffff?text=CSRED+Gallery+Image';
+            caption.innerHTML = `<h3 class="text-xl font-bold text-white mb-2">${imageId.toUpperCase()}</h3><p class="text-gray-300">Description de l'image - En production, ceci afficherait la vraie description de l'image.</p>`;
+        }
+
+        // Enhanced close modal functionality
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal events
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('imageModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Add scale out animation for filtering
+        const scaleOutStyle = document.createElement('style');
+        scaleOutStyle.textContent = `
+            @keyframes scaleOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(scaleOutStyle);
+    </script>
+</body>
+</html>

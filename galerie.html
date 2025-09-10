@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-fr="Galerie - CSRED" data-en="Gallery - CSRED">Galerie - CSRED</title>
+    <meta name="description" data-fr="Découvrez nos actions à travers notre galerie photo - CSRED Maroua" data-en="Discover our actions through our photo gallery - CSRED Maroua" content="Découvrez nos actions à travers notre galerie photo - CSRED Maroua">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#2563eb',
+                        'dark-blue': '#1d4ed8',
+                        'primary-blue': '#2563eb',
+                        'dark-blue': '#15803d'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Enhanced Custom Styles -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { top: 65%; right: 15%; animation-delay: 2s; }
+        .floating-shape:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 4s; }
+        .floating-shape:nth-child(4) { top: 35%; right: 25%; animation-delay: 6s; }
+        
+        .gradient-button {
+            background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+            z-index: 2;
+        }
+        
+        .gallery-item:hover::before {
+            left: 100%;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease-out;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .close:hover {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-scale-in { animation: scaleIn 0.5s ease-out; }
+        .animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .animate-pulse-slow { animation: pulse 3s infinite; } 
+/* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu ul {
+            padding: 1rem 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .mobile-menu li {
+            margin: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .mobile-menu a:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+            padding-left: 2rem;
+        }
+        
+        .mobile-menu a.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-lang-buttons {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #2563eb;
+        }
+</style>
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="flex items-center gap-2">
+                <img src="img/logo.png" alt="CSRED Logo" class="w-8 h-8">
+                <span class="font-bold text-primary-blue">CSRED</span>
+            </div>
+            <button id="closeMobileMenu" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul>
+            <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+            <li><a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a></li>
+            <li><a href="actions.html" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+            <li><a href="soutenir.html" data-fr="Soutenir" data-en="Support">Soutenir</a></li>
+            <li><a href="galerie.html" class="active" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+            <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+        </ul>
+        
+        <div class="mobile-lang-buttons">
+            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2" onclick="switchLanguage('fr')">FR</button>
+            <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
+                    <img src="img/logo.png" alt="CSRED Logo" style="width: 60px; height: 60px;">
+                    <span>CSRED</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="index.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Accueil</a></li>
+                    <li><a href="a-propos.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">À propos</a></li>
+                    <li><a href="actions.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Nos actions</a></li>
+                    <li><a href="soutenir.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Soutenir</a></li>
+                    <li><a href="galerie.html" class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">Galerie</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a></li>
+                </ul>
+
+                <!-- Desktop Language Buttons -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium" onclick="switchLanguage('fr')">FR</button>
+                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuToggle" class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <section class="bg-gray-100 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex items-center space-x-2 text-sm">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-blue transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <span class="text-primary-blue font-medium" data-fr="Galerie" data-en="Gallery">Galerie</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Enhanced Hero Section -->
+        <section class="bg-gradient-to-br from-primary-blue via-blue-600 to-primary-blue text-white py-24 relative overflow-hidden">
+            <!-- Floating Background Shapes -->
+            <div class="floating-shapes">
+                <div class="floating-shape w-48 h-48 bg-white rounded-full"></div>
+                <div class="floating-shape w-32 h-32 bg-primary-blue rounded-full"></div>
+                <div class="floating-shape w-24 h-24 bg-blue-300 rounded-full"></div>
+                <div class="floating-shape w-56 h-56 bg-blue-300 rounded-full"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+                <!-- Glass Effect Header Card -->
+                <div class="glass-effect rounded-3xl p-12 mb-8 animate-scale-in">
+                    <div class="inline-block p-4 bg-white/20 rounded-3xl mb-8">
+                        <i class="fas fa-images text-5xl text-white animate-pulse-slow"></i>
+                    </div>
+                    <h1 class="text-3xl md:text-3xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-blue-100 bg-clip-text text-transparent animate-fade-in-up" data-fr="Notre Galerie" data-en="Our Gallery">Notre Galerie</h1>
+                    <div class="w-32 h-2 bg-gradient-to-r from-white to-blue-400 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
+                    <p class="text-3xl md:text-2xl max-w-5xl mx-auto leading-relaxed font-light opacity-95 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Découvrez nos actions, nos réalisations et les sourires des enfants que nous accompagnons au quotidien." data-en="Discover our actions, our achievements and the smiles of the children we support daily.">
+                        Découvrez nos actions, nos réalisations et les sourires des enfants que nous accompagnons au quotidien.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Gallery Filter -->
+        <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up" data-fr="Explorez nos catégories" data-en="Explore our categories">Explorez nos catégories</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-primary-blue to-primary-blue mx-auto rounded-full mb-6"></div>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.1s;" data-fr="Filtrez les images par catégorie pour découvrir nos différentes actions" data-en="Filter images by category to discover our different actions">Filtrez les images par catégorie pour découvrir nos différentes actions</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <button class="filter-btn px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 bg-primary-blue text-white shadow-lg hover:shadow-xl animate-scale-in" data-filter="all" data-fr="Tout" data-en="All">
+                        <i class="fas fa-th-large mr-2"></i>Tout
+                    </button>
+                    <button class="filter-btn px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-gray-700 shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-primary-blue animate-scale-in" style="animation-delay: 0.1s;" data-filter="education" data-fr="Éducation" data-en="Education">
+                        <i class="fas fa-graduation-cap mr-2 text-blue-500"></i>Éducation
+                    </button>
+                    <button class="filter-btn px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-gray-700 shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-primary-blue animate-scale-in" style="animation-delay: 0.2s;" data-filter="health" data-fr="Santé" data-en="Health">
+                        <i class="fas fa-heartbeat mr-2 text-red-500"></i>Santé
+                    </button>
+                    <button class="filter-btn px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-gray-700 shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-green-500 animate-scale-in" style="animation-delay: 0.3s;" data-filter="activities" data-fr="Activités" data-en="Activities">
+                        <i class="fas fa-child mr-2 text-green-500"></i>Activités
+                    </button>
+                    <button class="filter-btn px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 bg-white text-gray-700 shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-purple-500 animate-scale-in" style="animation-delay: 0.4s;" data-filter="events" data-fr="Événements" data-en="Events">
+                        <i class="fas fa-calendar-alt mr-2 text-purple-500"></i>Événements
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Gallery Grid -->
+       <!-- Enhanced Gallery Grid -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up" data-fr="Nos moments capturés" data-en="Our captured moments">Nos moments capturés</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary-blue to-primary-blue mx-auto rounded-full mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.1s;" data-fr="Chaque image raconte une histoire d'espoir et de transformation" data-en="Each image tells a story of hope and transformation">Chaque image raconte une histoire d'espoir et de transformation</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="galleryGrid">
+            <!-- Education Category -->
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" data-category="education" onclick="openModal('img/galery/IMG-20250909-WA0014.jpg', 'Cours de mathématiques', 'Les enfants apprennent dans un environnement adapté')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0014.jpg" alt="Cours de mathématiques" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Cours de mathématiques</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-primary-blue transition-colors duration-300" data-fr="Salle de classe" data-en="Classroom">Salle de classe</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Les enfants apprennent dans un environnement adapté" data-en="Children learn in a suitable environment">Les enfants apprennent dans un environnement adapté</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.1s;" data-category="education" onclick="openModal('img/galery/IMG-20250909-WA0013.jpg', 'Bibliothèque', 'Développement des compétences en lecture')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0013.jpg" alt="Lecture guidée" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Bibliothèque</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-primary-blue transition-colors duration-300" data-fr="Lecture guidée" data-en="Guided reading">Lecture guidée</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Développement des compétences en lecture" data-en="Reading skills development">Développement des compétences en lecture</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <!-- Health Category -->
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.2s;" data-category="health" onclick="openModal('img/galery/IMG-20250909-WA0015.jpg', 'Suivi médical', 'Soins de santé pour tous les enfants')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0015.jpg" alt="Consultation médicale" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Suivi médical</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300" data-fr="Consultation médicale" data-en="Medical consultation">Consultation médicale</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Soins de santé pour tous les enfants" data-en="Healthcare for all children">Soins de santé pour tous les enfants</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.3s;" data-category="health" onclick="openModal('img/galery/IMG-20250909-WA0017.jpg', 'Nutrition', 'Alimentation saine et nutritive')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0017.jpg" alt="Repas équilibrés" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Nutrition</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-purple-500 transition-colors duration-300" data-fr="Repas équilibrés" data-en="Balanced meals">Repas équilibrés</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Alimentation saine et nutritive" data-en="Healthy and nutritious food">Alimentation saine et nutritive</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <!-- Activities Category -->
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.4s;" data-category="activities" onclick="openModal('img/galery/IMG-20250909-WA0018.jpg', 'Art thérapie', 'Expression artistique et développement personnel')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0018.jpg" alt="Atelier créatif" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Art thérapie</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-green-500 transition-colors duration-300" data-fr="Atelier créatif" data-en="Creative workshop">Atelier créatif</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Expression artistique et développement personnel" data-en="Artistic expression and personal development">Expression artistique et développement personnel</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.5s;" data-category="activities" onclick="openModal('img/galery/IMG-20250909-WA0019.jpg', 'Sport', 'Développement physique et esprit d\\'équipe')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/galery/IMG-20250909-WA0019.jpg" alt="Activités sportives" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Sport</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-teal-500 transition-colors duration-300" data-fr="Activités sportives" data-en="Sports activities">Activités sportives</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Développement physique et esprit d'équipe" data-en="Physical development and team spirit">Développement physique et esprit d'équipe</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-teal-400 to-teal-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <!-- Events Category -->
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.6s;" data-category="events" onclick="openModal('img/events/birthday1.jpg', 'Célébration', 'Moments de joie partagés')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/events/birthday1.jpg" alt="Fête d'anniversaire" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Célébration</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-pink-500 transition-colors duration-300" data-fr="Fête d'anniversaire" data-en="Birthday party">Fête d'anniversaire</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Moments de joie partagés" data-en="Shared moments of joy">Moments de joie partagés</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+
+            <div class="gallery-item card-hover bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer animate-scale-in" style="animation-delay: 0.7s;" data-category="events" onclick="openModal('img/events/graduation1.jpg', 'Remise de diplômes', 'Récompenser les efforts et les progrès')">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="img/events/graduation1.jpg" alt="Cérémonie de graduation" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="font-bold text-lg">Remise de diplômes</p>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-expand text-white"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-3 group-hover:text-indigo-500 transition-colors duration-300" data-fr="Cérémonie de graduation" data-en="Graduation ceremony">Cérémonie de graduation</h3>
+                    <p class="text-gray-600 leading-relaxed" data-fr="Récompenser les efforts et les progrès" data-en="Rewarding efforts and progress">Récompenser les efforts et les progrès</p>
+                    <div class="mt-4 h-1 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Statistics Section -->
+        <section class="py-16 bg-primary-blue text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-12" data-fr="Nos réalisations en chiffres" data-en="Our achievements in numbers">Nos réalisations en chiffres</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-4">500+</div>
+                        <p class="text-xl opacity-90" data-fr="Enfants accompagnés" data-en="Children supported">Enfants accompagnés</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-4">50+</div>
+                        <p class="text-xl opacity-90" data-fr="Bénévoles actifs" data-en="Active volunteers">Bénévoles actifs</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-4">15+</div>
+                        <p class="text-xl opacity-90" data-fr="Programmes développés" data-en="Programs developed">Programmes développés</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-4">10</div>
+                        <p class="text-xl opacity-90" data-fr="Années d'expérience" data-en="Years of experience">Années d'expérience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for image viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="text-center text-white mt-4 text-lg"></div>
+    </div>
+
+    <!-- Footer -->
+     <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary-blue">CSRED</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua" data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos" data-en="About">À propos</a></li>
+                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Contact" data-en="Contact">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
+                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-primary-blue"></i>
+                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-primary-blue"></i>
+                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Newsletter" data-en="Newsletter">Newsletter</h3>
+                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions" data-en="Stay informed about our actions">Restez informé de nos actions</p>
+                    <form class="space-y-3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="email" name="email" placeholder="Votre email" requigreen class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
+                        <button type="submit" class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Enhanced JavaScript for Gallery Page
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Enhanced Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in-left, .animate-slide-in-right');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Mobile Menu Functionality
+        let currentLanguage = 'fr';
+        let isMobileMenuOpen = false;
+
+        // Get DOM elements
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+
+        // Toggle mobile menu function
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        // Open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+            
+            isMobileMenuOpen = true;
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            isMobileMenuOpen = false;
+        }
+
+        // Event Listeners
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when clicking menu links
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu on window resize if open (for responsive behavior)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from staying open on orientation change
+        window.addEventListener('orientationchange', () => {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-shape');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Enhanced hover effects for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Enhanced filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button with enhanced styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-primary-blue', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+                    });
+                    
+                    this.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    this.classList.add('bg-primary-blue', 'text-white');
+                    
+                    // Enhanced filter animation
+                    galleryItems.forEach((item, index) => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            item.style.animation = `scaleIn 0.5s ease-out ${index * 0.1}s both`;
+                        } else {
+                            item.style.animation = 'scaleOut 0.3s ease-out both';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Enhanced Modal functionality
+       // Enhanced Modal functionality
+function openModal(imageSrc, title, description) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const caption = document.getElementById('caption');
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Add loading state
+    modalImg.style.opacity = '0';
+    modalImg.onload = function() {
+        this.style.opacity = '1';
+    };
+    
+    // Set the actual image source
+    modalImg.src = imageSrc;
+    caption.innerHTML = `<h3 class="text-xl font-bold text-white mb-2">${title}</h3><p class="text-gray-300">${description}</p>`;
+}
+
+        // Enhanced close modal functionality
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal events
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('imageModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Add scale out animation for filtering
+        const scaleOutStyle = document.createElement('style');
+        scaleOutStyle.textContent = `
+            @keyframes scaleOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(scaleOutStyle);
+    </script>
+</body>
+</html>

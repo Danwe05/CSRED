@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRED - Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté</title>
+    <meta name="description" content="Pour une inclusion, pour une humanité ! Le CSRED accompagne les enfants en difficulté à Maroua.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#2563eb',
+                        'primary-blue': '#2563eb',
+                        'light-blue': '#dbeafe',
+                        'light-blue': '#dcfce7',
+                        'dark-blue': '#1e40af',
+                        'dark-blue': '#15803d'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Enhanced Custom Styles -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; }
+        .floating-shape:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .floating-shape:nth-child(4) { top: 40%; right: 30%; animation-delay: 6s; }
+        
+        .gradient-button {
+            background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .stats-counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+/* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu ul {
+            padding: 1rem 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .mobile-menu li {
+            margin: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .mobile-menu a:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+            padding-left: 2rem;
+        }
+        
+        .mobile-menu a.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-lang-buttons {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #2563eb;
+        }
+</style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="flex items-center gap-2">
+                <img src="img/logo.png" alt="CSRED Logo" class="w-8 h-8">
+                <span class="font-bold text-primary-blue">CSRED</span>
+            </div>
+            <button id="closeMobileMenu" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul>
+            <li><a href="index.html" class="active" data-fr="Accueil" data-en="Home">Accueil</a></li>
+            <li><a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a></li>
+            <li><a href="actions.html" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+            <li><a href="soutenir.html" data-fr="Soutenir" data-en="Support">Soutenir</a></li>
+            <li><a href="galerie.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+            <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+        </ul>
+        
+        <div class="mobile-lang-buttons">
+            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2" onclick="switchLanguage('fr')">FR</button>
+            <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
+                    <img src="img/logo.png" alt="CSRED Logo" style="width: 60px; height: 60px;">
+                    <span>CSRED</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="index.html" class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">Accueil</a></li>
+                    <li><a href="a-propos.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">À propos</a></li>
+                    <li><a href="actions.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Nos actions</a></li>
+                    <li><a href="soutenir.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Soutenir</a></li>
+                    <li><a href="galerie.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Galerie</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a></li>
+                </ul>
+
+                <!-- Desktop Language Buttons -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium" onclick="switchLanguage('fr')">FR</button>
+                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuToggle" class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white py-32 overflow-hidden min-h-screen">
+        <!-- Mouse Following Glow Effect -->
+        <div class="mouse-glow" id="mouseGlow"></div>
+        
+        <!-- Enhanced Floating Background Shapes -->
+        <div class="floating-shapes">
+            <div class="floating-shape w-32 h-32 bg-white"></div>
+            <div class="floating-shape w-24 h-24 bg-blue-400"></div>
+            <div class="floating-shape w-40 h-40 bg-blue-300"></div>
+            <div class="floating-shape w-20 h-20 bg-blue-300"></div>
+            <div class="floating-shape w-16 h-16 bg-pink-300"></div>
+        </div>
+        
+        <!-- Particle Effects -->
+        <div id="particles"></div>
+        
+        <!-- Background Image with Parallax Effect -->
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="absolute inset-0 parallax-bg" style="background-image: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(29, 78, 216, 0.3)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 text-center z-10">
+            <!-- Enhanced Title with Shimmer Effect -->
+            <h1 class="text-6xl md:text-8xl font-black mb-8 animate-fade-in-up text-shimmer" data-fr="CSRED" data-en="CSRED">
+                CSRED
+            </h1>
+            
+            <!-- Enhanced Animated Underline -->
+            <div class="w-32 h-2 enhanced-underline mx-auto rounded-full mb-8 animate-pulse-glow"></div>
+            
+            <!-- Enhanced Description with Staggered Animation -->
+            <p class="text-xl md:text-2xl mb-12 max-w-5xl mx-auto leading-relaxed font-light animate-fade-in-up opacity-90" style="animation-delay: 0.3s;" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua. Nous accompagnons les enfants vulnérables vers un avenir meilleur." data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua. We support vulnerable children towards a better future.">
+                Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua. Nous accompagnons les enfants vulnérables vers un avenir meilleur.
+            </p>
+            
+            <!-- Enhanced CTA Buttons with Better Spacing and Effects -->
+            <div class="flex flex-col lg:flex-row gap-8 justify-center items-center animate-slide-in-left mt-16" style="animation-delay: 0.5s;">
+                <!-- Primary CTA with Enhanced Gradient -->
+                <a href="#" class="gradient-button text-white px-12 py-6 rounded-full font-bold text-42 shadow-2xl group relative overflow-hidden btn-hover-lift">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <i class="fas fa-heart text-xl group-hover:animate-bounce"></i> 
+                        <span data-fr="Faire un don" data-en="Make a donation">Faire un don</span>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </a>
+                
+                <!-- Secondary CTA with Glass Effect -->
+                <a href="#" class="glass-effect text-white hover:bg-white hover:text-blue-800 px-12 py-6 rounded-full font-bold text-42 transition-all duration-500 transform hover:scale-105 border-2 border-white/30 hover:border-white group btn-hover-lift">
+                    <i class="fas fa-info-circle text-xl group-hover:rotate-180 transition-transform duration-500 mr-3"></i> 
+                    <span data-fr="En savoir plus" data-en="Learn more">En savoir plus</span>
+                </a>
+                
+                <!-- Tertiary CTA with Enhanced Shadow -->
+                <a href="#" class="bg-white text-blue-800 hover:bg-gray-100 px-12 py-6 rounded-full font-bold text-42 transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-3xl group btn-hover-lift">
+                    <i class="fas fa-envelope text-xl group-hover:animate-pulse mr-3"></i> 
+                    <span data-fr="Nous contacter" data-en="Contact us">Nous contacter</span>
+                </a>
+            </div>
+            
+            <!-- Additional Interactive Element - Scroll Indicator -->
+            <!-- <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+                </div>
+                <p class="text-sm mt-2 opacity-70">Faire défiler vers le bas</p>
+            </div> -->
+        </div>
+    </section>
+
+
+        <!-- Actions principales -->
+        <section class="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+                <div class="absolute top-40 right-10 w-72 h-72 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 2s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative">
+                <div class="text-center mb-20 animate-fade-in-up">
+                    <div class="inline-block p-3 bg-primary-blue/10 rounded-2xl mb-6">
+                        <i class="fas fa-hands-helping text-4xl text-primary-blue"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-3xl font-black text-gray-800 mb-6 " data-fr="Nos principales actions" data-en="Our main actions">Nos principales actions</h2>
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <div class="w-16 h-1  to-transparent rounded"></div>
+                        <div class="w-4 h-4 bg-primary-blue rounded-full animate-pulse"></div>
+                        <div class="w-16 h-1 bg-gradient-to-l from-primary-blue to-transparent rounded"></div>
+                    </div>
+                    <p class="text-42 text-gray-600 max-w-3xl mx-auto leading-relaxed" data-fr="Découvrez comment nous transformons la vie des enfants en difficulté à travers nos programmes innovants" data-en="Discover how we transform the lives of children in difficulty through our innovative programs">
+                        Découvrez comment nous transformons la vie des enfants en difficulté à travers nos programmes innovants
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <!-- Enhanced Protection Card -->
+                    <div class="card-hover bg-white rounded-3xl p-10 shadow-xl border border-gray-100 relative overflow-hidden group animate-slide-in-left">
+                        <!-- Card Background Pattern -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-blue/10 to-transparent rounded-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        
+                        <!-- Floating Icon -->
+                        <div class="relative z-10 w-20 h-20 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:animate-bounce-slow">
+                            <i class="fas fa-shield-alt text-white text-3xl"></i>
+                        </div>
+                        
+                        <h3 class="text-3xl font-black text-gray-800 mb-6 group-hover:text-primary-blue transition-colors duration-300" data-fr="Protection" data-en="Protection">Protection</h3>
+                        
+                        <p class="text-gray-600 leading-relaxed text-lg mb-6" data-fr="Nous protégeons les enfants en situation de vulnérabilité et leur offrons un environnement sécurisé pour grandir et s'épanouir." data-en="We protect children in vulnerable situations and provide them with a safe environment to grow and thrive.">
+                            Nous protégeons les enfants en situation de vulnérabilité et leur offrons un environnement sécurisé pour grandir et s'épanouir.
+                        </p>
+                        
+                        <!-- Progress Indicator -->
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full  to-blue-400 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-1000" style="width: 85%;"></div>
+                            </div>
+                            <span class="text-sm font-bold text-primary-blue">85%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Development Card -->
+                    <div class="card-hover bg-white rounded-3xl p-10 shadow-xl border border-gray-100 relative overflow-hidden group animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <!-- Card Background Pattern -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-blue/10 to-transparent rounded-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        
+                        <!-- Floating Icon -->
+                        <div class="relative z-10 w-20 h-20 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:animate-bounce-slow">
+                            <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                        </div>
+                        
+                        <h3 class="text-3xl font-black text-gray-800 mb-6 group-hover:text-primary-blue transition-colors duration-300" data-fr="Développement" data-en="Development">Développement</h3>
+                        
+                        <p class="text-gray-600 leading-relaxed text-lg mb-6" data-fr="Nous développons les compétences et talents des enfants à travers l'éducation, la formation professionnelle et les activités créatives." data-en="We develop children's skills and talents through education, professional training and creative activities.">
+                            Nous développons les compétences et talents des enfants à travers l'éducation, la formation professionnelle et les activités créatives.
+                        </p>
+                        
+                        <!-- Progress Indicator -->
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-1000" style="width: 92%; animation-delay: 0.5s;"></div>
+                            </div>
+                            <span class="text-sm font-bold text-primary-blue">92%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Reintegration Card -->
+                    <div class="card-hover bg-white rounded-3xl p-10 shadow-xl border border-gray-100 relative overflow-hidden group animate-slide-in-right" style="animation-delay: 0.4s;">
+                        <!-- Card Background Pattern -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        
+                        <!-- Floating Icon -->
+                        <div class="relative z-10 w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:animate-bounce-slow">
+                            <i class="fas fa-hands-helping text-white text-3xl"></i>
+                        </div>
+                        
+                        <h3 class="text-3xl font-black text-gray-800 mb-6 group-hover:text-blue-600 transition-colors duration-300" data-fr="Réintégration" data-en="Reintegration">Réintégration</h3>
+                        
+                        <p class="text-gray-600 leading-relaxed text-lg mb-6" data-fr="Nous facilitons la réintégration sociale et familiale des enfants en les préparant à devenir des citoyens responsables et autonomes." data-en="We facilitate the social and family reintegration of children by preparing them to become responsible and autonomous citizens.">
+                            Nous facilitons la réintégration sociale et familiale des enfants en les préparant à devenir des citoyens responsables et autonomes.
+                        </p>
+                        
+                        <!-- Progress Indicator -->
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-1000" style="width: 78%; animation-delay: 1s;"></div>
+                            </div>
+                            <span class="text-sm font-bold text-blue-600">78%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Animated Statistics -->
+        <section class="py-24 bg-gradient-to-br from-primary-blue via-blue-700 text-white relative overflow-hidden">
+            <!-- Floating Background Elements -->
+            <div class="absolute inset-0">
+                <div class="absolute top-10 left-10 w-64 h-64 bg-white/5 rounded-full animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-48 h-48 bg-blue-400/10 rounded-full animate-float" style="animation-delay: 3s;"></div>
+                <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-blue-400/10 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative">
+                <div class="text-center mb-20 animate-fade-in-up">
+                    <div class="inline-block p-4 bg-white/10 rounded-3xl mb-8 backdrop-blur-sm">
+                        <i class="fas fa-chart-line text-3xl text-yel3ow-300"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-3xl font-black mb-6 " data-fr="Notre impact en chiffres" data-en="Our impact in numbers">Notre impact en chiffres</h2>
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <div class="w-20 h-1 bg-gradient-to-r from-white to-transparent rounded"></div>
+                        <div class="w-6 h-6 bg-blue-400 rounded-full animate-pulse"></div>
+                        <div class="w-20 h-1 bg-gradient-to-l from-white to-transparent rounded"></div>
+                    </div>
+                    <p class="text-42 max-w-3xl mx-auto opacity-90 leading-relaxed" data-fr="Des résultats concrets qui témoignent de notre engagement quotidien" data-en="Concrete results that testify to our daily commitment">
+                        Des résultats concrets qui témoignent de notre engagement quotidien
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Animated Stat Card 1 -->
+                    <div class="glass-effect rounded-3xl p-8 text-center group hover:scale-105 transition-all duration-500 animate-scale-in">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce-slow">
+                            <i class="fas fa-child text-white text-2xl"></i>
+                        </div>
+                        <div class="stats-counter text-3xl font-bla3k mb-4 text-blue-300 group-hover:scale-110 transition-transform duration-300" data-target="500">0</div>
+                        <div class="text-2xl font-bold mb-2">+</div>
+                        <p class="text-lg font-semibold opacity-90" data-fr="Enfants accompagnés" data-en="Children supported">Enfants accompagnés</p>
+                        <div class="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-2000" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated Stat Card 2 -->
+                    <div class="glass-effect rounded-3xl p-8 text-center group hover:scale-105 transition-all duration-500 animate-scale-in" style="animation-delay: 0.2s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce-slow">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <div class="stats-counter text-3xl font-bla3k mb-4 text-blue-300 group-hover:scale-110 transition-transform duration-300" data-target="50">0</div>
+                        <div class="text-2xl font-bold mb-2">+</div>
+                        <p class="text-lg font-semibold opacity-90" data-fr="Bénévoles actifs" data-en="Active volunteers">Bénévoles actifs</p>
+                        <div class="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-blue-400 to-emerald-500 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-2000" style="width: 100%; animation-delay: 0.5s;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated Stat Card 3 -->
+                    <div class="glass-effect rounded-3xl p-8 text-center group hover:scale-105 transition-all duration-500 animate-scale-in" style="animation-delay: 0.4s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce-slow">
+                            <i class="fas fa-project-diagram text-white text-2xl"></i>
+                        </div>
+                        <div class="stats-counter text-3xl font-bla3k mb-4 text-blue-300 group-hover:scale-110 transition-transform duration-300" data-target="15">0</div>
+                        <div class="text-2xl font-bold mb-2">+</div>
+                        <p class="text-lg font-semibold opacity-90" data-fr="Programmes développés" data-en="Programs developed">Programmes développés</p>
+                        <div class="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-2000" style="width: 100%; animation-delay: 1s;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated Stat Card 4 -->
+                    <div class="glass-effect rounded-3xl p-8 text-center group hover:scale-105 transition-all duration-500 animate-scale-in" style="animation-delay: 0.6s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce-slow">
+                            <i class="fas fa-calendar-alt text-white text-2xl"></i>
+                        </div>
+                        <div class="stats-counter text-3xl font-bla3k mb-4 text-purple-300 group-hover:scale-110 transition-transform duration-300" data-target="10">0</div>
+                        <div class="text-2xl font-bold mb-2"></div>
+                        <p class="text-lg font-semibold opacity-90" data-fr="Années d'expérience" data-en="Years of experience">Années d'expérience</p>
+                        <div class="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-2000" style="width: 100%; animation-delay: 1.5s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aperçu Galerie -->
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-3xl font-bol3 text-gray-800 mb-4" data-fr="Nos actions en images" data-en="Our actions in images">Nos actions en images</h2>
+                    <div class="w-20 h-1 bg-primary-blue mx-auto rounded"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="group relative bg-light-blue rounded-2xl aspect-square overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                        <div class="absolute inset-0 bg-primary-blue bg-opacity-80 flex flex-col items-center justify-center text-white p-6">
+                            <i class="fas fa-image text-4xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="text-center font-medium" data-fr="Activités éducatives" data-en="Educational activities">Activités éducatives</span>
+                        </div>
+                    </div>
+                    <div class="group relative bg-light-blue rounded-2xl aspect-square overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                        <div class="absolute inset-0 bg-primary-blue bg-opacity-80 flex flex-col items-center justify-center text-white p-6">
+                            <i class="fas fa-users text-4xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="text-center font-medium" data-fr="Vie communautaire" data-en="Community life">Vie communautaire</span>
+                        </div>
+                    </div>
+                    <div class="group relative bg-blue-100 rounded-2xl aspect-square overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                        <div class="absolute inset-0 bg-blue-500 bg-opacity-80 flex flex-col items-center justify-center text-white p-6">
+                            <i class="fas fa-tools text-4xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="text-center font-medium" data-fr="Formation professionnelle" data-en="Professional training">Formation professionnelle</span>
+                        </div>
+                    </div>
+                    <div class="group relative bg-blue-100 rounded-2xl aspect-square overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                        <div class="absolute inset-0 bg-blue-500 bg-opacity-80 flex flex-col items-center justify-center text-white p-6">
+                            <i class="fas fa-heartbeat text-4xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="text-center font-medium" data-fr="Soins et santé" data-en="Care and health">Soins et santé</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="galerie.html" class="inline-flex items-center gap-3 bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg" data-fr="Voir toute la galerie" data-en="View full gallery">
+                        <i class="fas fa-images"></i> Voir toute la galerie
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section À propos (aperçu) -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-3xl font-bol3 text-gray-800 mb-6" data-fr="Notre mission" data-en="Our mission">Notre mission</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6" data-fr="Depuis notre création, le CSRED s'engage pour la protection, la stabilisation et la réinsertion sociale des enfants en difficulté de la région de Maroua et du Grand Nord du Cameroun." data-en="Since our creation, CSRED has been committed to the protection, stabilization and social reintegration of children in difficulty in the Maroua region and the Far North of Cameroon.">
+                            Depuis notre création, le CSRED s'engage pour la protection, la stabilisation et la réinsertion sociale des enfants en difficulté de la région de Maroua et du Grand Nord du Cameroun.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-8" data-fr="Notre approche holistique combine accompagnement psychosocial, éducation, formation professionnelle et suivi médical pour offrir à chaque enfant les meilleures chances de réussite." data-en="Our holistic approach combines psychosocial support, education, professional training and medical follow-up to give each child the best chances of success.">
+                            Notre approche holistique combine accompagnement psychosocial, éducation, formation professionnelle et suivi médical pour offrir à chaque enfant les meilleures chances de réussite.
+                        </p>
+                        <a href="a-propos.html" class="inline-flex items-center gap-3 bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg" data-fr="En savoir plus" data-en="Learn more">
+                            <i class="fas fa-arrow-right"></i> En savoir plus
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="text-3xl font-bold text-primary-blue mb-2">150+</div>
+                            <div class="text-gray-600 text-sm" data-fr="Enfants accompagnés" data-en="Children supported">Enfants accompagnés</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="text-3xl font-bold text-primary-blue mb-2">8</div>
+                            <div class="text-gray-600 text-sm" data-fr="Années d'expérience" data-en="Years of experience">Années d'expérience</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="text-3xl font-bold text-blue-500 mb-2">25+</div>
+                            <div class="text-gray-600 text-sm" data-fr="Bénévoles actifs" data-en="Active volunteers">Bénévoles actifs</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div class="text-3xl font-bold text-blue-500 mb-2">95%</div>
+                            <div class="text-gray-600 text-sm" data-fr="Taux de réinsertion" data-en="Reintegration rate">Taux de réinsertion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+     <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary-blue">CSRED</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua" data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="a-propos.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos" data-en="About">À propos</a></li>
+                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Contact" data-en="Contact">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
+                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-primary-blue"></i>
+                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-primary-blue"></i>
+                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Newsletter" data-en="Newsletter">Newsletter</h3>
+                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions" data-en="Stay informed about our actions">Restez informé de nos actions</p>
+                    <form class="space-y-3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="email" name="email" placeholder="Votre email" requiblue class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
+                        <button type="submit" class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Enhanced Interactive JavaScript -->
+    <script>
+        // Enhanced JavaScript for Gallery Page
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Enhanced Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in-left, .animate-slide-in-right');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Mobile Menu Functionality
+        let currentLanguage = 'fr';
+        let isMobileMenuOpen = false;
+
+        // Get DOM elements
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+
+        // Toggle mobile menu function
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        // Open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+            
+            isMobileMenuOpen = true;
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Update hamburger icon
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            isMobileMenuOpen = false;
+        }
+
+        // Event Listeners
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when clicking menu links
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu on window resize if open (for responsive behavior)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from staying open on orientation change
+        window.addEventListener('orientationchange', () => {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-shape');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Enhanced hover effects for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Enhanced filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button with enhanced styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-primary-blue', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+                    });
+                    
+                    this.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    this.classList.add('bg-primary-blue', 'text-white');
+                    
+                    // Enhanced filter animation
+                    galleryItems.forEach((item, index) => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            item.style.animation = `scaleIn 0.5s ease-out ${index * 0.1}s both`;
+                        } else {
+                            item.style.animation = 'scaleOut 0.3s ease-out both';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Enhanced Modal functionality
+        function openModal(imageId) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('caption');
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add loading state
+            modalImg.style.opacity = '0';
+            modalImg.onload = function() {
+                this.style.opacity = '1';
+            };
+            
+            // In a real implementation, you would set the actual image source here
+            modalImg.src = 'https://via.placeholder.com/800x600/2563eb/ffffff?text=CSRED+Gallery+Image';
+            caption.innerHTML = `<h3 class="text-xl font-bold text-white mb-2">${imageId.toUpperCase()}</h3><p class="text-gray-300">Description de l'image - En production, ceci afficherait la vraie description de l'image.</p>`;
+        }
+
+        // Enhanced close modal functionality
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal events
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('imageModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Add scale out animation for filtering
+        const scaleOutStyle = document.createElement('style');
+        scaleOutStyle.textContent = `
+            @keyframes scaleOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(scaleOutStyle);
+    </script>
+</body>
+</html>
