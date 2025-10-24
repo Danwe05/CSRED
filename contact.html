@@ -416,29 +416,44 @@
         </section>
 
         <!-- Enhanced Hero Section -->
-        <section class="bg-gradient-to-br from-primary-blue via-blue-600 to-primary-blue text-white py-24 relative overflow-hidden">
-            <!-- Floating Background Shapes -->
-            <div class="floating-shapes">
-                <div class="floating-shape w-48 h-48 bg-white rounded-full"></div>
-                <div class="floating-shape w-32 h-32 bg-primary-blue rounded-full"></div>
-                <div class="floating-shape w-24 h-24 bg-blue-300 rounded-full"></div>
-                <div class="floating-shape w-56 h-56 bg-blue-300 rounded-full"></div>
-            </div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-                <!-- Glass Effect Header Card -->
-                <div class="glass-effect rounded-3xl p-12 mb-8 animate-scale-in">
-                    <div class="inline-block p-4 bg-white/20 rounded-3xl mb-8">
-                        <i class="fas fa-envelope text-5xl text-white"></i>
-                    </div>
-                    <h1 class="text-3xl md:text-3xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-blue-100 bg-clip-text text-transparent animate-fade-in-up" data-fr="Contactez-nous" data-en="Contact us">Contactez-nous</h1>
-                    <div class="w-32 h-2 bg-gradient-to-r from-white to-blue-400 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
-                    <p class="text-3xl md:text-2xl max-w-5xl mx-auto leading-relaxed font-light opacity-95 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Nous sommes là pour répondre à vos questions et accueillir vos suggestions. N'hésitez pas à nous contacter." data-en="We are here to answer your questions and welcome your suggestions. Don't hesitate to contact us.">
-                        Nous sommes là pour répondre à vos questions et accueillir vos suggestions. N'hésitez pas à nous contacter.
-                    </p>
-                </div>
-            </div>
-        </section>
+       <section class="hero-section bg-cover bg-center bg-no-repeat py-24 relative overflow-hidden" style="background-image: url('/path/to/your-contact-image.jpg');">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="floating-shape w-48 h-48 bg-white/10 rounded-full"></div>
+        <div class="floating-shape w-32 h-32 bg-blue-500/30 rounded-full"></div>
+        <div class="floating-shape w-24 h-24 bg-blue-400/30 rounded-full"></div>
+        <div class="floating-shape w-56 h-56 bg-blue-300/20 rounded-full"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/20 animate-fade-in-up">
+            <i class="fas fa-envelope text-2xl text-white"></i>
+            <span class="text-white font-medium tracking-wide" data-fr="Contactez-nous" data-en="Contact us">Contactez-nous</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-4xl md:text-6xl font-black mb-6 text-white leading-tight animate-fade-in-up">
+            <span class="block" data-fr="Nous sommes là" data-en="We are here">Nous sommes là</span>
+            <span class="block text-white" data-fr="pour vous aider" data-en="to help you">pour vous aider</span>
+        </h1>
+
+        <!-- Divider -->
+        <div class="w-24 h-1 bg-white/60 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
+
+        <!-- Description -->
+        <p class="text-lg md:text-xl max-w-4xl mx-auto text-white/90 leading-relaxed mb-10 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Nous sommes là pour répondre à vos questions et accueillir vos suggestions. N'hésitez pas à nous contacter." data-en="We are here to answer your questions and welcome your suggestions. Don't hesitate to contact us.">
+            Nous sommes là pour répondre à vos questions et accueillir vos suggestions. N'hésitez pas à nous contacter.
+        </p>
+
+
+    </div>
+</section>
+
 
         <!-- Contact Information -->
         <section class="py-16">
@@ -451,7 +466,7 @@
                             <i class="fas fa-map-marker-alt text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-primary-blue transition-colors duration-300" data-fr="Notre adresse" data-en="Our address">Notre adresse</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Quartier Domayo, Maroua, Région de l'Extrême-Nord, République du Cameroun" data-en="Domayo District, Maroua, Far North Region, Republic of Cameroon">
+                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Sur la route de Mora, Quatier Sékandé, Sis derriére l'Institut de formation de santé (IFS), et le complexe scolaire primaire bilingue John Newman, Maroua 2e, Extrême-Nord" data-en="Domayo District, Maroua, Far North Region, Republic of Cameroon">
                             Quartier Domayo<br>
                             Maroua, Région de l'Extrême-Nord<br>
                             République du Cameroun
@@ -465,9 +480,9 @@
                             <i class="fas fa-phone text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-primary-blue transition-colors duration-300" data-fr="Téléphone" data-en="Phone">Téléphone</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Urgences: +237 6XX XXX XXX, Administration: +237 6XX XXX XXX" data-en="Emergency: +237 6XX XXX XXX, Administration: +237 6XX XXX XXX">
-                            <strong>Urgences:</strong> +237 6XX XXX XXX<br>
-                            <strong>Administration:</strong> +237 6XX XXX XXX
+                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Urgences: 695736750/671742611/693271740, Administration: 695736750/671742611/693271740" data-en="Emergency: 695736750/671742611/693271740, Administration: 695736750/671742611/693271740">
+                            <strong>Urgences:</strong> 695736750/671742611/693271740<br>
+                            <strong>Administration:</strong> 695736750/671742611/693271740
                         </p>
                         <div class="mt-6 h-1 bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                     </div>
@@ -478,8 +493,8 @@
                             <i class="fas fa-envelope text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-green-500 transition-colors duration-300" data-fr="Email" data-en="Email">Email</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Général: contact@csred-maroua.org, Partenariats: partenariat@csred-maroua.org, Bénévolat: benevoles@csred-maroua.org" data-en="General: contact@csred-maroua.org, Partnerships: partenariat@csred-maroua.org, Volunteering: benevoles@csred-maroua.org">
-                            <strong>Général:</strong> contact@csred-maroua.org<br>
+                        <p class="text-gray-600 leading-relaxed text-lg" data-fr="Général: csred-maroua@outlook.fr, Partenariats: partenariat@csred-maroua.org, Bénévolat: benevoles@csred-maroua.org" data-en="General: csred-maroua@outlook.fr, Partnerships: partenariat@csred-maroua.org, Volunteering: benevoles@csred-maroua.org">
+                            <strong>Général:</strong> csred-maroua@outlook.fr<br>
                             <strong>Partenariats:</strong> partenariat@csred-maroua.org<br>
                             <strong>Bénévolat:</strong> benevoles@csred-maroua.org
                         </p>
@@ -680,15 +695,15 @@
                     <div class="space-y-3">
                         <div class="flex items-start gap-3">
                             <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
-                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                            <span class="text-gray-300">Complexe scolaire primaire bilingue John Newman, Maroua 2e, Extrême-Nord</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fas fa-phone text-primary-blue"></i>
-                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                            <span class="text-gray-300">695736750/671742611/693271740</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fas fa-envelope text-primary-blue"></i>
-                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                            <span class="text-gray-300">csred-maroua@outlook.fr</span>
                         </div>
                     </div>
                 </div>

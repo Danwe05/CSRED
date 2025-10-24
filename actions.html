@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos actions - CSRED</title>
-    <meta name="description" content="Découvrez les programmes et actions du CSRED : protection, développement, réinsertion sociale des enfants en difficulté.">
+    <meta name="description"
+        content="Découvrez les programmes et actions du CSRED : protection, développement, réinsertion sociale des enfants en difficulté.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -33,69 +35,81 @@
             }
         }
     </script>
-    
+
     <!-- Enhanced Custom Styles -->
     <style>
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes scaleIn {
             from {
                 opacity: 0;
                 transform: scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
-        
+
         @keyframes slideInLeft {
             from {
                 opacity: 0;
                 transform: translateX(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes slideInRight {
             from {
                 opacity: 0;
                 transform: translateX(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes counterUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .floating-shapes {
             position: absolute;
             width: 100%;
@@ -103,48 +117,67 @@
             overflow: hidden;
             pointer-events: none;
         }
-        
+
         .floating-shape {
             position: absolute;
             opacity: 0.1;
             animation: float 8s ease-in-out infinite;
         }
-        
-        .floating-shape:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-shape:nth-child(2) { top: 70%; right: 15%; animation-delay: 2s; }
-        .floating-shape:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
-        .floating-shape:nth-child(4) { top: 30%; right: 25%; animation-delay: 6s; }
-        
+
+        .floating-shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating-shape:nth-child(4) {
+            top: 30%;
+            right: 25%;
+            animation-delay: 6s;
+        }
+
         .gradient-button {
             background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
             transition: all 0.3s ease;
         }
-        
+
         .gradient-button:hover {
             transform: scale(1.05);
             box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3);
         }
-        
+
         .card-hover {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .card-hover:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
+
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .action-card {
             position: relative;
             overflow: hidden;
         }
-        
+
         .action-card::before {
             content: '';
             position: absolute;
@@ -152,18 +185,19 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
-        
+
         .action-card:hover::before {
             left: 100%;
         }
-        
+
         .stats-counter {
             font-variant-numeric: tabular-nums;
-        } 
-/* Mobile Menu Styles */
+        }
+
+        /* Mobile Menu Styles */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -176,11 +210,11 @@
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
         }
-        
+
         .mobile-menu.active {
             left: 0;
         }
-        
+
         .mobile-menu-header {
             padding: 1rem;
             border-bottom: 1px solid #e5e7eb;
@@ -188,17 +222,17 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .mobile-menu ul {
             padding: 1rem 0;
             list-style: none;
             margin: 0;
         }
-        
+
         .mobile-menu li {
             margin: 0;
         }
-        
+
         .mobile-menu a {
             display: block;
             padding: 1rem 1.5rem;
@@ -208,18 +242,18 @@
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(229, 231, 235, 0.5);
         }
-        
+
         .mobile-menu a:hover {
             background-color: #f3f4f6;
             color: #2563eb;
             padding-left: 2rem;
         }
-        
+
         .mobile-menu a.active {
             color: #2563eb;
             background-color: #eff6ff;
         }
-        
+
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -232,18 +266,18 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .mobile-menu-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .mobile-lang-buttons {
             padding: 1rem 1.5rem;
             border-top: 1px solid #e5e7eb;
             margin-top: auto;
         }
-        
+
         .close-btn {
             background: none;
             border: none;
@@ -253,16 +287,17 @@
             padding: 0.5rem;
             transition: color 0.3s ease;
         }
-        
+
         .close-btn:hover {
             color: #2563eb;
         }
-</style>
+    </style>
 </head>
+
 <body>
     <!-- Mobile Menu Overlay -->
     <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
-    
+
     <!-- Mobile Menu -->
     <nav id="mobileMenu" class="mobile-menu">
         <div class="mobile-menu-header">
@@ -274,7 +309,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
+
         <ul>
             <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
             <li><a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a></li>
@@ -283,10 +318,13 @@
             <li><a href="galerie.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
             <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
         </ul>
-        
+
         <div class="mobile-lang-buttons">
-            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2" onclick="switchLanguage('fr')">FR</button>
-            <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+            <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium mr-2"
+                onclick="switchLanguage('fr')">FR</button>
+            <button
+                class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300"
+                onclick="switchLanguage('en')">EN</button>
         </div>
     </nav>
 
@@ -294,29 +332,46 @@
     <header class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
             <nav class="flex items-center justify-between py-4">
-                <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
+                <a href="index.html"
+                    class="flex items-center gap-3 text-2xl font-bold text-primary-blue hover:text-dark-blue transition-colors duration-300">
                     <img src="img/logo.png" alt="CSRED Logo" style="width: 60px; height: 60px;">
                     <span>CSRED</span>
                 </a>
-                
+
                 <!-- Desktop Menu -->
                 <ul class="hidden lg:flex items-center gap-8">
-                    <li><a href="index.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Accueil</a></li>
-                    <li><a href="a-propos.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">À propos</a></li>
-                    <li><a href="actions.html" class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">Nos actions</a></li>
-                    <li><a href="soutenir.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Soutenir</a></li>
-                    <li><a href="galerie.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Galerie</a></li>
-                    <li><a href="contact.html" class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a></li>
+                    <li><a href="index.html"
+                            class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Accueil</a>
+                    </li>
+                    <li><a href="a-propos.html"
+                            class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">À
+                            propos</a></li>
+                    <li><a href="actions.html"
+                            class="text-primary-blue font-semibold border-b-2 border-primary-blue pb-1">Nos actions</a>
+                    </li>
+                    <li><a href="soutenir.html"
+                            class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Soutenir</a>
+                    </li>
+                    <li><a href="galerie.html"
+                            class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Galerie</a>
+                    </li>
+                    <li><a href="contact.html"
+                            class="text-gray-700 hover:text-primary-blue transition-colors duration-300 font-medium">Contact</a>
+                    </li>
                 </ul>
 
                 <!-- Desktop Language Buttons -->
                 <div class="hidden lg:flex items-center gap-2">
-                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium" onclick="switchLanguage('fr')">FR</button>
-                    <button class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300" onclick="switchLanguage('en')">EN</button>
+                    <button class="px-3 py-1 rounded-md bg-primary-blue text-white text-sm font-medium"
+                        onclick="switchLanguage('fr')">FR</button>
+                    <button
+                        class="px-3 py-1 rounded-md bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors duration-300"
+                        onclick="switchLanguage('en')">EN</button>
                 </div>
 
                 <!-- Mobile Menu Toggle Button -->
-                <button id="mobileMenuToggle" class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
+                <button id="mobileMenuToggle"
+                    class="lg:hidden text-gray-700 hover:text-primary-blue transition-colors duration-300">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </nav>
@@ -327,7 +382,8 @@
     <section class="bg-gray-100 py-4">
         <div class="max-w-6xl mx-auto px-4">
             <nav class="flex items-center gap-3 text-sm">
-                <a href="index.html" class="text-primary-blue hover:text-dark-blue transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a>
+                <a href="index.html" class="text-primary-blue hover:text-dark-blue transition-colors duration-300"
+                    data-fr="Accueil" data-en="Home">Accueil</a>
                 <i class="fas fa-chevron-right text-gray-400"></i>
                 <span class="text-gray-600" data-fr="Nos actions" data-en="Our actions">Nos actions</span>
             </nav>
@@ -335,370 +391,260 @@
     </section>
 
     <!-- Enhanced Page Header -->
-    <section class="bg-gradient-to-br from-primary-blue via-blue-600 to-primary-blue text-white py-24 relative overflow-hidden">
-        <!-- Floating Background Shapes -->
-        <div class="floating-shapes">
-            <div class="floating-shape w-48 h-48 bg-white rounded-full"></div>
-            <div class="floating-shape w-32 h-32 bg-primary-blue rounded-full"></div>
-            <div class="floating-shape w-24 h-24 bg-blue-300 rounded-full"></div>
-            <div class="floating-shape w-56 h-56 bg-blue-300 rounded-full"></div>
+   <section class="hero-section bg-cover bg-center bg-no-repeat py-24 relative overflow-hidden" style="background-image: url('img/galery/IMG-20250909-WA0018.jpg');">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="floating-shape w-48 h-48 bg-white/10 rounded-full"></div>
+        <div class="floating-shape w-32 h-32 bg-blue-500/30 rounded-full"></div>
+        <div class="floating-shape w-24 h-24 bg-blue-400/30 rounded-full"></div>
+        <div class="floating-shape w-56 h-56 bg-blue-300/20 rounded-full"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/20 animate-fade-in-up">
+            <i class="fas fa-hands-helping text-2xl text-white"></i>
+            <span class="text-white font-medium tracking-wide" data-fr="Nos actions" data-en="Our actions">Nos actions</span>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-4 text-center relative">
-            <!-- Glass Effect Header Card -->
-            <div class="glass-effect rounded-3xl p-12 mb-8 animate-scale-in">
-                <div class="inline-block p-4 bg-white/20 rounded-3xl mb-8">
-                    <i class="fas fa-hands-helping text-5xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-3xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-blue-100 bg-clip-text text-transparent animate-fade-in-up" data-fr="Nos actions" data-en="Our actions">Nos actions</h1>
-                <div class="w-32 h-2 bg-gradient-to-r from-white to-blue-400 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
-                <p class="text-3xl md:text-2xl max-w-5xl mx-auto leading-relaxed font-light opacity-95 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Découvrez nos programmes dédiés à la protection, au développement et à la réinsertion sociale des enfants en difficulté." data-en="Discover our programs dedicated to protection, development and social reintegration of children in difficulty.">
-                    Découvrez nos programmes dédiés à la protection, au développement et à la réinsertion sociale des enfants en difficulté.
-                </p>
-            </div>
-        </div>
-    </section>
+
+        <!-- Main Heading -->
+        <h1 class="text-4xl md:text-6xl font-black mb-6 text-white leading-tight animate-fade-in-up">
+            <span class="block" data-fr="Pour la protection" data-en="For protection">Pour la protection</span>
+            <span class="block text-white" data-fr="et le développement des enfants" data-en="and development of children">et le développement des enfants</span>
+        </h1>
+
+        <!-- Divider -->
+        <div class="w-24 h-1 bg-white/60 mx-auto rounded-full mb-8 animate-pulse-slow"></div>
+
+        <!-- Description -->
+        <p class="text-lg md:text-xl max-w-4xl mx-auto text-white/90 leading-relaxed mb-10 animate-fade-in-up" style="animation-delay: 0.2s;" data-fr="Découvrez nos programmes dédiés à la protection, au développement et à la réinsertion sociale des enfants en difficulté." data-en="Discover our programs dedicated to protection, development and social reintegration of children in difficulty.">
+            Découvrez nos programmes dédiés à la protection, au développement et à la réinsertion sociale des enfants en difficulté.
+        </p>
+
+      
+    </div>
+</section>
+
 
     <main>
-        <!-- Enhanced Protection & Sauvegarde Section -->
-        <section class="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Protection & Sauvegarde" data-en="Protection & Safeguarding">Protection & Sauvegarde</h2>
-                
-                <div class="mb-16">
-                    <div class="text-center mb-12">
-                        <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto" data-fr="Notre priorité absolue est d'assurer la sécurité physique et psychologique des enfants qui nous sont confiés. Nous mettons en place un environnement protecteur qui permet à chaque enfant de retrouver confiance et stabilité." data-en="Our absolute priority is to ensure the physical and psychological safety of the children entrusted to us. We create a protective environment that allows each child to regain confidence and stability.">
-                            Notre priorité absolue est d'assurer la sécurité physique et psychologique des enfants qui nous sont confiés. Nous mettons en place un environnement protecteur qui permet à chaque enfant de retrouver confiance et stabilité.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">24/7</div>
-                            <div class="text-gray-600 text-sm" data-fr="Surveillance et protection" data-en="Surveillance and protection">Surveillance et protection</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">100%</div>
-                            <div class="text-gray-600 text-sm" data-fr="Enfants en sécurité" data-en="Children safe">Enfants en sécurité</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">5</div>
-                            <div class="text-gray-600 text-sm" data-fr="Psychologues spécialisés" data-en="Specialized psychologists">Psychologues spécialisés</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">3</div>
-                            <div class="text-gray-600 text-sm" data-fr="Centres d'hébergement" data-en="Accommodation centers">Centres d'hébergement</div>
-                        </div>
-                    </div>
-                </div>
+       
 
-                <!-- Enhanced Action Cards Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Action Card 1 -->
-                    <div class="action-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in">
-                        <div class="w-20 h-20 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-home text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-primary-blue transition-colors duration-300" data-fr="Hébergement d'urgence" data-en="Emergency accommodation">Hébergement d'urgence</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Accueil immédiat des enfants en situation de danger avec hébergement sécurisé, alimentation équilibrée et soins médicaux de première nécessité." data-en="Immediate reception of children in dangerous situations with secure accommodation, balanced nutrition and essential medical care.">
-                            Accueil immédiat des enfants en situation de danger avec hébergement sécurisé, alimentation équilibrée et soins médicaux de première nécessité.
-                        </p>
-                        <div class="h-1 bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                    </div>
-                    
-                    <!-- Action Card 2 -->
-                    <div class="action-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in" style="animation-delay: 0.1s;">
-                        <div class="w-20 h-20 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-brain text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-primary-blue transition-colors duration-300" data-fr="Soutien psychologique" data-en="Psychological support">Soutien psychologique</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Accompagnement thérapeutique individualisé pour traiter les traumatismes et aider les enfants à reconstruire leur équilibre émotionnel." data-en="Individualized therapeutic support to treat trauma and help children rebuild their emotional balance.">
-                            Accompagnement thérapeutique individualisé pour traiter les traumatismes et aider les enfants à reconstruire leur équilibre émotionnel.
-                        </p>
-                        <div class="h-1 bg-gradient-to-r from-primary-blue to-blue-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                    </div>
-                    
-                    <!-- Action Card 3 -->
-                    <div class="action-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in" style="animation-delay: 0.2s;">
-                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-shield-alt text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-green-500 transition-colors duration-300" data-fr="Protection juridique" data-en="Legal protection">Protection juridique</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Assistance juridique pour faire valoir les droits des enfants, les protéger des abus et faciliter leurs démarches administratives." data-en="Legal assistance to assert children's rights, protect them from abuse and facilitate their administrative procedures.">
-                            Assistance juridique pour faire valoir les droits des enfants, les protéger des abus et faciliter leurs démarches administratives.
-                        </p>
-                        <div class="h-1 bg-gradient-to-r from-green-500 to-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                    </div>
-                    
-                    <!-- Action Card 4 -->
-                    <div class="action-card card-hover bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group animate-scale-in" style="animation-delay: 0.3s;">
-                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-stethoscope text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-500 transition-colors duration-300" data-fr="Suivi médical" data-en="Medical follow-up">Suivi médical</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Examens médicaux complets, vaccinations, traitements spécialisés et suivi nutritionnel adapté aux besoins de chaque enfant." data-en="Comprehensive medical examinations, vaccinations, specialized treatments and nutritional monitoring adapted to each child's needs.">
-                            Examens médicaux complets, vaccinations, traitements spécialisés et suivi nutritionnel adapté aux besoins de chaque enfant.
-                        </p>
-                        <div class="h-1 bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Développement de l'enfant -->
-        <section class="py-20 bg-gray-50">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Développement de l'enfant" data-en="Child Development">Développement de l'enfant</h2>
-                
-                <div class="mb-16">
-                    <div class="text-center mb-12">
-                        <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto" data-fr="Nous croyons que chaque enfant a un potentiel unique à révéler. Nos programmes éducatifs et de formation visent à développer leurs compétences, leur créativité et leur confiance en soi pour construire un avenir prometteur." data-en="We believe that every child has a unique potential to reveal. Our educational and training programs aim to develop their skills, creativity and self-confidence to build a promising future.">
-                            Nous croyons que chaque enfant a un potentiel unique à révéler. Nos programmes éducatifs et de formation visent à développer leurs compétences, leur créativité et leur confiance en soi pour construire un avenir prometteur.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">120+</div>
-                            <div class="text-gray-600 text-sm" data-fr="Enfants scolarisés" data-en="Children enrolled in school">Enfants scolarisés</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">8</div>
-                            <div class="text-gray-600 text-sm" data-fr="Ateliers de formation" data-en="Training workshops">Ateliers de formation</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">15</div>
-                            <div class="text-gray-600 text-sm" data-fr="Enseignants bénévoles" data-en="Volunteer teachers">Enseignants bénévoles</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">85%</div>
-                            <div class="text-gray-600 text-sm" data-fr="Taux de réussite scolaire" data-en="School success rate">Taux de réussite scolaire</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-graduation-cap text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Éducation formelle" data-en="Formal education">Éducation formelle</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Remise à niveau scolaire, cours de rattrapage et accompagnement pour la réintégration dans le système éducatif classique ou l'obtention de diplômes." data-en="School upgrading, catch-up courses and support for reintegration into the conventional education system or obtaining diplomas.">
-                            Remise à niveau scolaire, cours de rattrapage et accompagnement pour la réintégration dans le système éducatif classique ou l'obtention de diplômes.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-tools text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Formation professionnelle" data-en="Professional training">Formation professionnelle</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Ateliers pratiques en menuiserie, couture, mécanique, informatique et agriculture pour développer des compétences professionnelles concrètes." data-en="Practical workshops in carpentry, sewing, mechanics, IT and agriculture to develop concrete professional skills.">
-                            Ateliers pratiques en menuiserie, couture, mécanique, informatique et agriculture pour développer des compétences professionnelles concrètes.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-palette text-4xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Activités créatives" data-en="Creative activities">Activités créatives</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Ateliers d'art, musique, théâtre et danse pour stimuler la créativité, favoriser l'expression personnelle et développer la confiance en soi." data-en="Art, music, theater and dance workshops to stimulate creativity, promote self-expression and develop self-confidence.">
-                            Ateliers d'art, musique, théâtre et danse pour stimuler la créativité, favoriser l'expression personnelle et développer la confiance en soi.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-running text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Sport et loisirs" data-en="Sports and recreation">Sport et loisirs</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Activités sportives et récréatives pour maintenir la santé physique, développer l'esprit d'équipe et offrir des moments de détente." data-en="Sports and recreational activities to maintain physical health, develop team spirit and provide moments of relaxation.">
-                            Activités sportives et récréatives pour maintenir la santé physique, développer l'esprit d'équipe et offrir des moments de détente.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-laptop-code text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Initiation numérique" data-en="Digital literacy">Initiation numérique</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Apprentissage de l'informatique, navigation internet et utilisation des outils numériques essentiels pour l'insertion dans la société moderne." data-en="Computer learning, internet browsing and use of digital tools essential for integration into modern society.">
-                            Apprentissage de l'informatique, navigation internet et utilisation des outils numériques essentiels pour l'insertion dans la société moderne.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-users text-4xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Compétences sociales" data-en="Social skills">Compétences sociales</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Développement des compétences relationnelles, communication, résolution de conflits et préparation à la vie en société." data-en="Development of relationship skills, communication, conflict resolution and preparation for life in society.">
-                            Développement des compétences relationnelles, communication, résolution de conflits et préparation à la vie en société.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Stabilisation & Réinsertion sociale -->
-        <section class="py-20">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Stabilisation & Réinsertion sociale" data-en="Stabilization & Social Reintegration">Stabilisation & Réinsertion sociale</h2>
-                
-                <div class="mb-16">
-                    <div class="text-center mb-12">
-                        <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto" data-fr="L'objectif final de notre accompagnement est de préparer et faciliter le retour des enfants dans leurs familles ou leur intégration autonome dans la société. Nous les accompagnons dans cette transition cruciale." data-en="The ultimate goal of our support is to prepare and facilitate children's return to their families or their autonomous integration into society. We support them in this crucial transition.">
-                            L'objectif final de notre accompagnement est de préparer et faciliter le retour des enfants dans leurs familles ou leur intégration autonome dans la société. Nous les accompagnons dans cette transition cruciale.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">95%</div>
-                            <div class="text-gray-600 text-sm" data-fr="Taux de réinsertion" data-en="Reintegration rate">Taux de réinsertion</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-primary-blue mb-2">80</div>
-                            <div class="text-gray-600 text-sm" data-fr="Familles reconstituées" data-en="Reunited families">Familles reconstituées</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">12</div>
-                            <div class="text-gray-600 text-sm" data-fr="Mois de suivi moyen" data-en="Average follow-up months">Mois de suivi moyen</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">25</div>
-                            <div class="text-gray-600 text-sm" data-fr="Micro-entreprises créées" data-en="Micro-businesses created">Micro-entreprises créées</div>
-                        </div>
-                    </div>
-                </div>
+       <section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-gray-800"
+        data-fr="Nos principes d’action au CSRED" data-en="Our Guiding Principles at CSRED">
+        Nos principes d’action au CSRED
+    </h2>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-search text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Recherche familiale" data-en="Family tracing">Recherche familiale</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Enquêtes sociales approfondies pour retrouver les familles des enfants et évaluer les conditions de réunification familiale en toute sécurité." data-en="In-depth social investigations to find children's families and assess conditions for safe family reunification.">
-                            Enquêtes sociales approfondies pour retrouver les familles des enfants et évaluer les conditions de réunification familiale en toute sécurité.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-home text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Médiation familiale" data-en="Family mediation">Médiation familiale</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Accompagnement des familles pour résoudre les conflits, améliorer les relations et créer un environnement familial stable et protecteur." data-en="Support for families to resolve conflicts, improve relationships and create a stable and protective family environment.">
-                            Accompagnement des familles pour résoudre les conflits, améliorer les relations et créer un environnement familial stable et protecteur.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-briefcase text-4xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Insertion professionnelle" data-en="Professional insertion">Insertion professionnelle</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Aide à la recherche d'emploi, stage en entreprise, création de micro-entreprises et accompagnement vers l'autonomie économique." data-en="Job search assistance, company internships, micro-business creation and support towards economic autonomy.">
-                            Aide à la recherche d'emploi, stage en entreprise, création de micro-entreprises et accompagnement vers l'autonomie économique.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-calendar-check text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Suivi post-réinsertion" data-en="Post-reintegration follow-up">Suivi post-réinsertion</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Accompagnement continu pendant 12 mois après la réinsertion pour s'assurer de la stabilité et du bien-être de l'enfant dans son nouvel environnement." data-en="Continuous support for 12 months after reintegration to ensure the child's stability and well-being in their new environment.">
-                            Accompagnement continu pendant 12 mois après la réinsertion pour s'assurer de la stabilité et du bien-être de l'enfant dans son nouvel environnement.
-                        </p>
-                    </div>
+    <div class="text-center mb-16">
+      <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto"
+         data-fr="Les principes d’action du CSRED s’enracinent dans la Convention relative aux droits de l’enfant et dans son Statut général. Ils guident toutes les interventions auprès des enfants, des jeunes et de leurs familles."
+         data-en="The CSRED’s guiding principles are rooted in the Convention on the Rights of the Child and its General Statute. They guide all interventions with children, youth, and their families.">
+         Les principes d’action du CSRED s’enracinent dans la Convention relative aux droits de l’enfant et dans son
+         Statut général. Ils guident toutes les interventions auprès des enfants, des jeunes et de leurs familles.
+      </p>
+    </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-hands-helping text-4xl text-primary-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Soutien communautaire" data-en="Community support">Soutien communautaire</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Sensibilisation des communautés locales et mobilisation des leaders traditionnels pour faciliter l'acceptation et l'intégration des enfants." data-en="Community awareness and mobilization of traditional leaders to facilitate children's acceptance and integration.">
-                            Sensibilisation des communautés locales et mobilisation des leaders traditionnels pour faciliter l'acceptation et l'intégration des enfants.
-                        </p>
-                    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Principe 1 -->
+      <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+        <div class="mb-6">
+          <i class="fas fa-child text-4xl text-primary-blue"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-gray-800"
+            data-fr="Intérêt supérieur de l’enfant" data-en="Best interests of the child">
+            Intérêt supérieur de l’enfant
+        </h3>
+        <p class="text-gray-600 leading-relaxed"
+           data-fr="Conformément à l’article 3.1 de la Convention relative aux droits de l’enfant, toutes les actions du CSRED placent l’intérêt supérieur de l’enfant au centre des décisions et interventions."
+           data-en="In accordance with Article 3.1 of the Convention on the Rights of the Child, all CSRED actions place the child’s best interests at the heart of every decision and intervention.">
+           Conformément à l’article 3.1 de la Convention relative aux droits de l’enfant, toutes les actions du CSRED
+           placent l’intérêt supérieur de l’enfant au centre des décisions et interventions.
+        </p>
+      </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-graduation-cap text-4xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-fr="Formation des familles" data-en="Family training">Formation des familles</h3>
-                        <p class="text-gray-600 leading-relaxed" data-fr="Sessions de formation pour les parents et tuteurs sur la parentalité positive, la protection de l'enfant et la gestion familiale." data-en="Training sessions for parents and guardians on positive parenting, child protection and family management.">
-                            Sessions de formation pour les parents et tuteurs sur la parentalité positive, la protection de l'enfant et la gestion familiale.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Principe 2 -->
+      <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+        <div class="mb-6">
+          <i class="fas fa-balance-scale text-4xl text-green-600"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-gray-800"
+            data-fr="Redevabilité et responsabilité" data-en="Accountability and responsibility">
+            Redevabilité et responsabilité
+        </h3>
+        <p class="text-gray-600 leading-relaxed"
+           data-fr="Le CSRED définit des objectifs clairs et rend compte de ses résultats auprès de ses partenaires, des enfants bénéficiaires, de leurs familles et communautés."
+           data-en="CSRED sets clear objectives and is accountable to its partners, child beneficiaries, their families, and communities.">
+           Le CSRED définit des objectifs clairs et rend compte de ses résultats auprès de ses partenaires, des enfants
+           bénéficiaires, de leurs familles et communautés.
+        </p>
+      </div>
+
+      <!-- Principe 3 -->
+      <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+        <div class="mb-6">
+          <i class="fas fa-hand-holding-heart text-4xl text-primary-blue"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-gray-800"
+            data-fr="Respect des us et coutumes" data-en="Respect for customs and traditions">
+            Respect des us et coutumes
+        </h3>
+        <p class="text-gray-600 leading-relaxed"
+           data-fr="Le CSRED valorise les traditions locales et encourage les enfants et jeunes à préserver leurs valeurs culturelles tout en favorisant le respect mutuel et l’ouverture."
+           data-en="CSRED values local traditions and encourages children and youth to preserve their cultural values while promoting mutual respect and openness.">
+           Le CSRED valorise les traditions locales et encourage les enfants et jeunes à préserver leurs valeurs
+           culturelles tout en favorisant le respect mutuel et l’ouverture.
+        </p>
+      </div>
+
+      <!-- Principe 4 -->
+      <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+        <div class="mb-6">
+          <i class="fas fa-shield-alt text-4xl text-red-500"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-gray-800"
+            data-fr="Principe de « ne pas nuire »" data-en="Do no harm principle">
+            Principe de « ne pas nuire »
+        </h3>
+        <p class="text-gray-600 leading-relaxed"
+           data-fr="Toutes les actions du CSRED sont menées dans le respect du principe « ne pas nuire », afin d’éviter tout risque de préjudice physique, psychologique ou social aux bénéficiaires."
+           data-en="All CSRED actions are conducted under the 'Do no harm' principle, avoiding any physical, psychological, or social harm to beneficiaries.">
+           Toutes les actions du CSRED sont menées dans le respect du principe « ne pas nuire », afin d’éviter tout
+           risque de préjudice physique, psychologique ou social aux bénéficiaires.
+        </p>
+      </div>
+
+      <!-- Principe 5 -->
+      <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+        <div class="mb-6">
+          <i class="fas fa-users text-4xl text-green-500"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-gray-800"
+            data-fr="Principe de participation" data-en="Participation principle">
+            Principe de participation
+        </h3>
+        <p class="text-gray-600 leading-relaxed"
+           data-fr="Le CSRED veille à ce que chaque enfant ou jeune en difficulté participe activement aux décisions qui concernent son avenir, renforçant ainsi son autonomie et sa dignité."
+           data-en="CSRED ensures that every child or youth in difficulty actively participates in decisions concerning their future, strengthening their autonomy and dignity.">
+           Le CSRED veille à ce que chaque enfant ou jeune en difficulté participe activement aux décisions qui concernent
+           son avenir, renforçant ainsi son autonomie et sa dignité.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- Projets réalisés -->
         <section class="py-20 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Nos projets réalisés" data-en="Our completed projects">Nos projets réalisés</h2>
-                
+                <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-fr="Nos projets réalisés"
+                    data-en="Our completed projects">Nos projets réalisés</h2>
+
                 <div class="grid md:grid-cols-3 gap-8 mb-16">
                     <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="Projet 'Nouveau Départ' (2022-2023)" data-en="'New Start' Project (2022-2023)">Projet "Nouveau Départ" (2022-2023)</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Réinsertion de 45 enfants soldats démobilisés avec formation professionnelle intensive et accompagnement psychologique. Taux de réussite : 92%." data-en="Reintegration of 45 demobilized child soldiers with intensive professional training and psychological support. Success rate: 92%.">
-                            Réinsertion de 45 enfants soldats démobilisés avec formation professionnelle intensive et accompagnement psychologique. Taux de réussite : 92%.
+                        <h3 class="text-xl font-bold mb-4 text-primary-blue"
+                            data-fr="Contribution à la réintégration" data-en="Contributing to the Reintegration">
+                            Contribution à la réintégration</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6"
+                            data-fr="Contribution à la réintégration des enfants en situation de ruptures en liens sociaux: 
+                            Cas des enfants de rue et des enfants en conflit avec la loi dans les 03 arrondissements de la ville de Maroua."
+                            data-en="Contributing to the Reintegration of Children in Situations of Social Distancing:
+Cases of Street Children and Children in Conflict with the Law in the Three Districts of the City of Maroua.">
+                            Contribution à la réintégration des enfants en situation de ruptures en liens sociaux: 
+                            Cas des enfants de rue et des enfants en conflit avec la loi dans les 03 arrondissements de la ville de Maroua.
                         </p>
                         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
                             <div class="bg-primary-blue h-3 rounded-full" style="width: 92%;"></div>
                         </div>
-                        <small class="text-gray-500" data-fr="Financé par l'UNICEF" data-en="Funded by UNICEF">Financé par l'UNICEF</small>
                     </div>
 
                     <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="Programme 'Retour aux Sources' (2021-2022)" data-en="'Back to Roots' Program (2021-2022)">Programme "Retour aux Sources" (2021-2022)</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Accompagnement de 60 enfants déplacés internes vers la réunification familiale avec leurs familles d'origine dans des zones sécurisées." data-en="Support for 60 internally displaced children towards family reunification with their families of origin in secure areas.">
-                            Accompagnement de 60 enfants déplacés internes vers la réunification familiale avec leurs familles d'origine dans zones sécurisées.
+                        <h3 class="text-xl font-bold mb-4 text-primary-blue"
+                            data-fr="Contribution à l'intégration"
+                            data-en="Contribution to the integration">Contribution à l'intégration
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed mb-6"
+                            data-fr=" Contribution à l'intégration de santé mentale dans les projets de développement
+                            et de soutien psychologique à base communautaire dans la localité de 
+                            Ngaoundéré 2e."
+                            data-en="Contribution to the integration of mental health into development projects
+and community-based psychological support in the locality of
+Ngaoundéré 2nd.">
+                            Contribution à l'intégration de santé mentale dans les projets de développement
+                            et de soutien psychologique à base communautaire dans la localité de 
+                            Ngaoundéré 2e.
                         </p>
                         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
                             <div class="bg-primary-blue h-3 rounded-full" style="width: 88%;"></div>
                         </div>
-                        <small class="text-gray-500" data-fr="En partenariat avec Plan International" data-en="In partnership with Plan International">En partenariat avec Plan International</small>
                     </div>
 
                     <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-blue-600" data-fr="Initiative 'Jeunes Entrepreneurs' (2023-2024)" data-en="'Young Entrepreneurs' Initiative (2023-2024)">Initiative "Jeunes Entrepreneurs" (2023-2024)</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Formation de 30 jeunes de 16-18 ans à l'entrepreneuriat avec création de 15 micro-entreprises dans l'artisanat et l'agriculture." data-en="Training 30 young people aged 16-18 in entrepreneurship with creation of 15 micro-businesses in crafts and agriculture.">
-                            Formation de 30 jeunes de 16-18 ans à l'entrepreneuriat avec création de 15 micro-entreprises dans l'artisanat et l'agriculture.
+                        <h3 class="text-xl font-bold mb-4 text-blue-600"
+                            data-fr="Projet d'appui"
+                            data-en="Structural support project">Projet d'appui</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6"
+                            data-fr=" Projet d'appui structurel du centre de formation professionalle 
+                            communautaire de Mokong."
+                            data-en="Structural support project for the Mokong community vocational training center.">
+                            Projet d'appui structurel du centre de formation professionalle 
+                            communautaire de Mokong
                         </p>
                         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
                             <div class="bg-blue-600 h-3 rounded-full" style="width: 95%;"></div>
                         </div>
-                        <small class="text-gray-500" data-fr="Soutenu par la Coopération Française" data-en="Supported by French Cooperation">Soutenu par la Coopération Française</small>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-blue-600"
+                            data-fr="Contribution à la stabilisation"
+                            data-en="Contribution to the stabilization">IContribution à la stabilisation</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6"
+                            data-fr="Contribution à la stabilisation et à la resocialisation de l'enfance en
+                            difficulté dans la ville de Maroua."
+                            data-en="Contribution to the stabilization and resocialization of children in difficulty
+in the city of Maroua.">
+                            Contribution à la stabilisation et à la resocialisation de l'enfance en
+                            difficulté dans la ville de Maroua
+                        </p>
+                        <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
+                            <div class="bg-blue-600 h-3 rounded-full" style="width: 95%;"></div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Projets en cours -->
-                <h3 class="text-3xl font-bold text-center mb-12 text-primary-blue" data-fr="Projets en cours" data-en="Current projects">Projets en cours</h3>
-                
+                <h3 class="text-3xl font-bold text-center mb-12 text-primary-blue" data-fr="Projets en cours"
+                    data-en="Current projects">Projets en cours</h3>
+
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-primary-blue">
-                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="Projet 'Éducation pour Tous' (2024-2026)" data-en="'Education for All' Project (2024-2026)">Projet "Éducation pour Tous" (2024-2026)</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Scolarisation de 100 enfants avec création d'une école interne, formation d'enseignants et fourniture de matériel pédagogique." data-en="Schooling of 100 children with creation of an internal school, teacher training and provision of educational materials.">
-                            Scolarisation de 100 enfants avec création d'une école interne, formation d'enseignants et fourniture de matériel pédagogique.
+                    <div
+                        class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-primary-blue">
+                        <h3 class="text-xl font-bold mb-4 text-primary-blue"
+                            data-fr="Projet de renforcement des capacités"
+                            data-en="Project to strengthen the organizational capacities">Projet de renforcement des capacités
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed mb-6"
+                            data-fr=" Projet de renforcement des capacités organisationnelles de femmes en milieu
+                            rural dans le canton de Mokong."
+                            data-en="Project to strengthen the organizational capacities of women in rural areas
+in Mokong Canton.">
+                            Projet de renforcement des capacités organisationnelles de femmes en milieu
+                            rural dans le canton de Mokong.
                         </p>
                         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
                             <div class="bg-primary-blue h-3 rounded-full" style="width: 35%;"></div>
                         </div>
-                        <small class="text-primary-blue font-semibold" data-fr="35% réalisé - En cours" data-en="35% completed - In progress">35% réalisé - En cours</small>
+                        <small class="text-primary-blue font-semibold" data-fr="35% réalisé - En cours"
+                            data-en="35% completed - In progress">35% réalisé - En cours</small>
                     </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-primary-blue">
-                        <h3 class="text-xl font-bold mb-4 text-primary-blue" data-fr="Programme 'Santé Mentale' (2024-2025)" data-en="'Mental Health' Program (2024-2025)">Programme "Santé Mentale" (2024-2025)</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6" data-fr="Renforcement du soutien psychologique avec formation de 10 conseillers communautaires et création d'un centre de thérapie." data-en="Strengthening psychological support with training of 10 community counselors and creation of a therapy center.">
-                            Renforcement du soutien psychologique avec formation de 10 conseillers communautaires et création d'un centre de thérapie.
-                        </p>
-                        <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
-                            <div class="bg-primary-blue h-3 rounded-full" style="width: 60%;"></div>
-                        </div>
-                        <small class="text-primary-blue font-semibold" data-fr="60% réalisé - En cours" data-en="60% completed - In progress">60% réalisé - En cours</small>
-                    </div>
                 </div>
             </div>
         </section>
@@ -706,18 +652,28 @@
         <!-- Call to Action -->
         <section class="py-20 bg-blue-50">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold mb-6 text-primary-blue" data-fr="Soutenez nos actions" data-en="Support our actions">Soutenez nos actions</h2>
-                <p class="text-xl mb-12 text-gray-700 leading-relaxed max-w-3xl mx-auto" data-fr="Chaque contribution nous permet d'étendre notre impact et d'offrir plus d'opportunités aux enfants en difficulté. Rejoignez-nous dans cette mission humanitaire." data-en="Each contribution allows us to extend our impact and offer more opportunities to children in difficulty. Join us in this humanitarian mission.">
-                    Chaque contribution nous permet d'étendre notre impact et d'offrir plus d'opportunités aux enfants en difficulté. Rejoignez-nous dans cette mission humanitaire.
+                <h2 class="text-4xl font-bold mb-6 text-primary-blue" data-fr="Soutenez nos actions"
+                    data-en="Support our actions">Soutenez nos actions</h2>
+                <p class="text-xl mb-12 text-gray-700 leading-relaxed max-w-3xl mx-auto"
+                    data-fr="Chaque contribution nous permet d'étendre notre impact et d'offrir plus d'opportunités aux enfants en difficulté. Rejoignez-nous dans cette mission humanitaire."
+                    data-en="Each contribution allows us to extend our impact and offer more opportunities to children in difficulty. Join us in this humanitarian mission.">
+                    Chaque contribution nous permet d'étendre notre impact et d'offrir plus d'opportunités aux enfants
+                    en difficulté. Rejoignez-nous dans cette mission humanitaire.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="soutenir.html" class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3" data-fr="Faire un don" data-en="Donate">
+                    <a href="soutenir.html"
+                        class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3"
+                        data-fr="Faire un don" data-en="Donate">
                         <i class="fas fa-heart"></i> Faire un don
                     </a>
-                    <a href="soutenir.html#benevole" class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3" data-fr="Devenir bénévole" data-en="Become a volunteer">
+                    <a href="soutenir.html#benevole"
+                        class="bg-primary-blue hover:bg-dark-blue text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center gap-3"
+                        data-fr="Devenir bénévole" data-en="Become a volunteer">
                         <i class="fas fa-hands-helping"></i> Devenir bénévole
                     </a>
-                    <a href="galerie.html" class="border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-3" data-fr="Voir nos réalisations" data-en="See our achievements">
+                    <a href="galerie.html"
+                        class="border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-3"
+                        data-fr="Voir nos réalisations" data-en="See our achievements">
                         <i class="fas fa-images"></i> Voir nos réalisations
                     </a>
                 </div>
@@ -731,73 +687,94 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
                     <h3 class="text-2xl font-bold mb-4 text-primary-blue">CSRED</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed" data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua" data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed"
+                        data-fr="Centre de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua"
+                        data-en="Stabilization and Resocialization Center for Children in Difficulty in Maroua">Centre
+                        de Stabilisation et de Resocialisation de l'Enfance en Difficulté de Maroua</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-twitter text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i
+                                class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i
+                                class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i
+                                class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-blue transition-colors duration-300"><i
+                                class="fab fa-youtube text-xl"></i></a>
                     </div>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides</h3>
+                    <h3 class="text-lg font-semibold mb-4" data-fr="Liens rapides" data-en="Quick links">Liens rapides
+                    </h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Accueil" data-en="Home">Accueil</a></li>
-                        <li><a href="a-propos.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos" data-en="About">À propos</a></li>
-                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
-                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300"
+                                data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="a-propos.html"
+                                class="text-gray-300 hover:text-white transition-colors duration-300" data-fr="À propos"
+                                data-en="About">À propos</a></li>
+                        <li><a href="actions.html" class="text-gray-300 hover:text-white transition-colors duration-300"
+                                data-fr="Nos actions" data-en="Our actions">Nos actions</a></li>
+                        <li><a href="galerie.html" class="text-gray-300 hover:text-white transition-colors duration-300"
+                                data-fr="Galerie" data-en="Gallery">Galerie</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-4" data-fr="Contact" data-en="Contact">Contact</h3>
                     <div class="space-y-3">
                         <div class="flex items-start gap-3">
                             <i class="fas fa-map-marker-alt text-primary-blue mt-1"></i>
-                            <span class="text-gray-300">Maroua, Région de l'Extrême-Nord, Cameroun</span>
+                            <span class="text-gray-300">Complexe scolaire primaire bilingue John Newman, Maroua 2e, Extrême-Nord</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fas fa-phone text-primary-blue"></i>
-                            <span class="text-gray-300">+237 6XX XXX XXX</span>
+                            <span class="text-gray-300">695736750/671742611/693271740</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fas fa-envelope text-primary-blue"></i>
-                            <span class="text-gray-300">contact@CSRED-maroua.org</span>
+                            <span class="text-gray-300">csred-maroua@outlook.fr</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-4" data-fr="Newsletter" data-en="Newsletter">Newsletter</h3>
-                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions" data-en="Stay informed about our actions">Restez informé de nos actions</p>
+                    <p class="text-gray-300 mb-4" data-fr="Restez informé de nos actions"
+                        data-en="Stay informed about our actions">Restez informé de nos actions</p>
                     <form class="space-y-3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <input type="email" name="email" placeholder="Votre email" requigreen class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
-                        <button type="submit" class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                        <input type="email" name="email" placeholder="Votre email" requigreen
+                            class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:border-primary-blue focus:outline-none transition-colors duration-300 text-white">
+                        <button type="submit"
+                            class="w-full bg-primary-blue hover:bg-dark-blue text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300"
+                            data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
                     </form>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 pt-6 text-center">
-                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span> | 
-                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales" data-en="Legal notices">Mentions légales</a> | 
-                <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+                <p class="text-gray-400">&copy; 2025 CSRED. <span data-fr="Tous droits réservés."
+                        data-en="All rights reserved.">Tous droits réservés.</span> |
+                    <a href="#" class="hover:text-white transition-colors duration-300" data-fr="Mentions légales"
+                        data-en="Legal notices">Mentions légales</a> |
+                    <a href="#" class="hover:text-white transition-colors duration-300"
+                        data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a>
+                </p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    
+
     <!-- Enhanced Interactive JavaScript -->
     <script>
         // Enhanced JavaScript for Gallery Page
-        
+
         // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -806,138 +783,138 @@
                 }
             });
         }, observerOptions);
-        
+
         // Enhanced Gallery Filter Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Animate elements on scroll
             const animateElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in-left, .animate-slide-in-right');
             animateElements.forEach(el => {
                 observer.observe(el);
             });
-            
+
             // Mobile Menu Functionality
-        let currentLanguage = 'fr';
-        let isMobileMenuOpen = false;
+            let currentLanguage = 'fr';
+            let isMobileMenuOpen = false;
 
-        // Get DOM elements
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
-        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+            // Get DOM elements
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+            const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
 
-        // Toggle mobile menu function
-        function toggleMobileMenu() {
-            isMobileMenuOpen = !isMobileMenuOpen;
-            
-            if (isMobileMenuOpen) {
-                openMobileMenu();
-            } else {
-                closeMobileMenu();
+            // Toggle mobile menu function
+            function toggleMobileMenu() {
+                isMobileMenuOpen = !isMobileMenuOpen;
+
+                if (isMobileMenuOpen) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
             }
-        }
 
-        // Open mobile menu
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
-            // Update hamburger icon
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-            
-            isMobileMenuOpen = true;
-        }
+            // Open mobile menu
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-        // Close mobile menu
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Update hamburger icon
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-            
-            isMobileMenuOpen = false;
-        }
+                // Update hamburger icon
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
 
-        // Event Listeners
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-        }
+                isMobileMenuOpen = true;
+            }
 
-        if (closeMobileMenuBtn) {
-            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
-        }
+            // Close mobile menu
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
 
-        if (mobileMenuOverlay) {
-            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-        }
+                // Update hamburger icon
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
 
-        // Close menu when clicking menu links
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
+                isMobileMenuOpen = false;
+            }
+
+            // Event Listeners
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+            }
+
+            if (closeMobileMenuBtn) {
+                closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close menu when clicking menu links
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
             });
-        });
 
-        // Close menu on window resize if open (for responsive behavior)
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
-                closeMobileMenu();
-            }
-        });
+            // Close menu on window resize if open (for responsive behavior)
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
 
-        // Prevent menu from staying open on orientation change
-        window.addEventListener('orientationchange', () => {
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
-            }
-        });
-            
+            // Prevent menu from staying open on orientation change
+            window.addEventListener('orientationchange', () => {
+                if (isMobileMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+
             // Parallax effect for floating shapes
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const parallaxElements = document.querySelectorAll('.floating-shape');
-                
+
                 parallaxElements.forEach((element, index) => {
                     const speed = 0.5 + (index * 0.1);
                     element.style.transform = `translateY(${scrolled * speed}px)`;
                 });
             });
-            
+
             // Enhanced hover effects for gallery items
             const galleryItems = document.querySelectorAll('.gallery-item');
             galleryItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
+                item.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-12px) scale(1.02)';
                 });
-                
-                item.addEventListener('mouseleave', function() {
+
+                item.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
-            
+
             // Enhanced filter functionality
             const filterBtns = document.querySelectorAll('.filter-btn');
-            
+
             filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const filter = this.getAttribute('data-filter');
-                    
+
                     // Update active button with enhanced styling
                     filterBtns.forEach(b => {
                         b.classList.remove('bg-primary-blue', 'text-white');
                         b.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
                     });
-                    
+
                     this.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
                     this.classList.add('bg-primary-blue', 'text-white');
-                    
+
                     // Enhanced filter animation
                     galleryItems.forEach((item, index) => {
                         if (filter === 'all' || item.getAttribute('data-category') === filter) {
@@ -952,7 +929,7 @@
                     });
                 });
             });
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -973,16 +950,16 @@
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const caption = document.getElementById('caption');
-            
+
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
+
             // Add loading state
             modalImg.style.opacity = '0';
-            modalImg.onload = function() {
+            modalImg.onload = function () {
                 this.style.opacity = '1';
             };
-            
+
             // In a real implementation, you would set the actual image source here
             modalImg.src = 'https://via.placeholder.com/800x600/2563eb/ffffff?text=CSRED+Gallery+Image';
             caption.innerHTML = `<h3 class="text-xl font-bold text-white mb-2">${imageId.toUpperCase()}</h3><p class="text-gray-300">Description de l'image - En production, ceci afficherait la vraie description de l'image.</p>`;
@@ -996,28 +973,28 @@
         }
 
         // Close modal events
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const closeBtn = document.querySelector('.close');
             if (closeBtn) {
                 closeBtn.addEventListener('click', closeModal);
             }
-            
+
             // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 const modal = document.getElementById('imageModal');
                 if (event.target === modal) {
                     closeModal();
                 }
             });
-            
+
             // Close modal with Escape key
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     closeModal();
                 }
             });
         });
-        
+
         // Add scale out animation for filtering
         const scaleOutStyle = document.createElement('style');
         scaleOutStyle.textContent = `
@@ -1035,4 +1012,5 @@
         document.head.appendChild(scaleOutStyle);
     </script>
 </body>
+
 </html>
